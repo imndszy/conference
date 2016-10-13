@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>NOVA</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="./css/pro.css?embed" />
+    <link rel="stylesheet" type="text/css" href="./vendor/ionicons/css/ionicons.css" />
+    <link rel="stylesheet" type="text/css" href = "css/head.css">
+    <style>
+        [data-lazy] {
+            display: block;
+            margin: 10px auto;
+            height: 120px;
+            width: 240px;
+            border: 1px solid #eee;
+        }
+    </style>
+	<script src = "js/zepto.min.js"></script>
+    <script src = "js/zepto-touch.min.js"></script>
+	<script>
+	var openid = window.location.search.slice(1);
+	var page = 0;
+	function onBridgeReady(){
+		WeixinJSBridge.call('hideOptionMenu');
+		//$.get("getnameopen.php?openid="+openid,function(data,status){$('#the-name').html(data);});
+		get_content();
+		$('#more-note').tap(get_content);
+		function get_content(){
+			$("#the-botton").html('<div id = "the-botton"><p id = "more-note" align="center">获取中……</p></div>');
+			$("#the-botton").off("tap");
+			page += 1;
+			setTimeout(function(){
+					$.ajax({
+						url:'/',
+						data:{
+							page : page,
+							openid : openid
+						},
+						dataType:'JSON',
+						type:'post',
+						success:function(data){
+								var more_note = eval ("(" + data + ")")
+								more_note.forEach(function(value,index){
+									var note_item = '';
+									note_item += '<li class="ui-item"><a href="';
+									note_item += value.url;
+									note_item +='">';
+									note_item += '<p class="ui-gray">';
+									note_item += value.title;
+									note_item += '</p>				</a>				</li>	';
+									$("#note-items").append(note_item);	
+								});
+								$("#the-botton").html('<div id = "the-botton"><p id = "more-note" align="center">获取更多</p></div>');
+								$('#more-note').tap(get_content);
+								if(more_note.length < 8)
+									$("#the-botton").html('<div id = "the-botton"><p id = "no-more-note" align="center">无更多</p></div>');		
+							}
+					});
+			},500);
+		}
+	}
+	/*setTimeout(function(){
+		$.get("getAllNote.php?page="+ page + "&openid="+openid,function(data,status){
+				var more_note = eval ("(" + data + ")")
+				more_note.forEach(function(value,index){
+					var note_item = '';
+					note_item += '<li class="ui-item"><a href="';
+					note_item += value.url;
+					note_item +='">';
+					
+					note_item += '<p class="ui-gray">';
+					note_item += value.title;
+					note_item += '</p>				</a>				</li>	';
+					$("#note-items").append(note_item);	
+				});
+				page += 1;
+				$("#the-botton").html('<div id = "the-botton"><p id = "more-note" align="center">获取更多</p></div>');
+				$('#more-note').tap(get_content);
+				if(more_note.length < 8)
+					$("#the-botton").html('<div id = "the-botton"><p id = "no-more-note" align="center">无更多</p></div>');		
+			});
+			},500);*/
+
+	if (typeof WeixinJSBridge == "undefined"){
+		if( document.addEventListener ){
+			document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		}else if (document.attachEvent){
+			document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+			document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		}
+	}else{
+		onBridgeReady();
+	}
+	</script>
+   </head>
+<body class="ui-app">
+<div class="ui-top-bar js-no-bounce">
+    <div class="ui-tab page1 js-active">
+        <div class="header" id="header">
+            <span class="headline"><span id = "the-name"></span>的所有消息</span>
+        </div>
+    </div>
+</div>
+
+<!-- 一个App可以多个page -->
+<div class="ui-page page1 js-active">
+    <div class="ui-page-content">
+        <!-- 主体内容 -->
+        <div class="ui-tab js-active" id="page1-tab1" role="tabpanel">
+		
+            <ul class="ui-list arrow-right" id = "note-items">
+                
+				
+            </ul>
+ 
+			<img src="css/bac6.jpg" width="100%" height="20px" style="opacity :0">
+			<div id = "the-botton"><p id = "more-note" align="center">获取更多</p></div>
+        </div>
+	</div>
+       <img src="css/bac6.jpg" width="100%" height="50px" style="opacity :0">
+</div>
+</body>
+</html>
