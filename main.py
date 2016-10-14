@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import hashlib
 import xml.etree.ElementTree as ET
-from flask import Flask, request, make_response, render_template
+from flask import Flask, request, make_response, render_template, session
 
 from app.config import TOKEN,DB_HOSTNAME,DB_USERNAME,DB_NAME,DB_PASSWORD,DB_PORT
 from app.db import create_engine
@@ -29,7 +29,8 @@ def wechat_auth():
 @app.route('/', methods=['POST'])
 def wechat_msg():
     rec = request.data
-    msg = parse(rec)
+    if rec:
+        msg = parse(rec)
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -51,12 +52,27 @@ def leave():
 def arrive_handler():
     if request.data.get('num') == 1:
         da = request.data
-        handle_arrive_post(school=da.get('school'),company=da.get('company'),
-                    username=da.get('username'),work=da.get('work'),
-                    tel=da.get('tel'),arrive=da.get('arrive'),
-                    arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
-                    visit=da.get('visit'))
-    pass
+        # session['school'] = da.get('school')
+        session['company'] = da.get('company')
+        session['username'] = da.get('username')
+        # session['work'] = da.get('work')
+        # session['tel'] = da.get('tel')
+        session['arrive'] = da.get('arrive')
+        session['arrivetime'] = da.get('arrivetime')
+        session['ordernum1'] = da.get('ordernum1')
+        # session['visit'] = da.get('visit')
+        session.permanent = True
+        handle_arrive_post(company=da.get('company'),
+                           username=da.get('username'),
+                            arrive=da.get('arrive'), arrivetime=da.get('arrivetime'),
+                           ordernum1=da.get('ordernum1'))
+        # handle_arrive_post(school=da.get('school'),company=da.get('company'),
+        #             username=da.get('username'),work=da.get('work'),
+        #             tel=da.get('tel'),arrive=da.get('arrive'),
+        #             arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
+        #             visit=da.get('visit'))
+    elif request.data.get('num') == 2:
+        pass
 
 
 @app.route('/leave_handler')
@@ -91,14 +107,6 @@ def parse(rec):
     for child in root:
         msg[child.tag] = child.text
     return msg
-
-text_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
-
-
-def res_text_msg(msg, content):
-    response = make_response(text_rep % (msg['FromUserName'], msg['ToUserName'], str(int(time.time())), content))
-    response.content_type = 'application/xml'
-    return response
 
 
 if __name__ == "__main__":
