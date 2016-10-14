@@ -6,7 +6,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import hashlib
 import xml.etree.ElementTree as ET
-from flask import Flask, request, make_response, render_template, session
+from flask import Flask, request, make_response, render_template, session, jsonify
 
 from app.config import TOKEN,DB_HOSTNAME,DB_USERNAME,DB_NAME,DB_PASSWORD,DB_PORT
 from app.db import create_engine
@@ -71,6 +71,7 @@ def arrive_handler():
         #             tel=da.get('tel'),arrive=da.get('arrive'),
         #             arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
         #             visit=da.get('visit'))
+        return jsonify(data='success')
     elif request.data.get('num') == 2:
         pass
 
