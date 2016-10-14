@@ -18,7 +18,7 @@ def wechat_auth():
     echostr = request.args.get('echostr', '')
     if verification():
         return make_response(echostr)
-    return render_template("index.html")
+    return 'render_template("index.html")'
 
 
 @app.route('/', methods=['POST'])
@@ -38,11 +38,11 @@ def index():
 
 @app.route('/arrive')
 def arrive():
-    pass
+    return render_template('Arrive.html')
 
-@app.route('/depart')
+@app.route('/leave')
 def depart():
-    pass
+    return render_template('Leave.html')
 
 
 
