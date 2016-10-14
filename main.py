@@ -8,10 +8,15 @@ import hashlib
 import xml.etree.ElementTree as ET
 from flask import Flask, request, make_response, render_template
 
-from app.config import TOKEN
+from app.config import TOKEN,DB_HOSTNAME,DB_USERNAME,DB_NAME,DB_PASSWORD,DB_PORT
+from app.db import create_engine
+from app.handler import handle_arrive_post
 
 app = Flask(__name__)
 app.debug = True
+
+create_engine(DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOSTNAME, DB_PORT, charset='utf8')
+
 
 @app.route('/', methods=['GET'])
 def wechat_auth():
@@ -44,6 +49,13 @@ def leave():
 
 @app.route('/arrive_handler')
 def arrive_handler():
+    if request.data.get('num') == 1:
+        da = request.data
+        handle_arrive_post(school=da.get('school'),company=da.get('company'),
+                    username=da.get('username'),work=da.get('work'),
+                    tel=da.get('tel'),arrive=da.get('arrive'),
+                    arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
+                    visit=da.get('visit'))
     pass
 
 
