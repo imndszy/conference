@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>赴会方式登记</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
+<meta content="yes" name="apple-mobile-web-app-capable" /><link href="static/styles/bootstrap.min.css" rel="stylesheet" />
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="static/styles/NewGlobal.css" rel="stylesheet" />
+	<script type="text/javascript" src="static/Scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="static/Scripts/zepto.js"></script>
+ <style>
+								.section {
+									background: #f3f3f3;
+									font-size: 14px;
+								}
+								#datepicker_wrap {
+									overflow: hidden;
+									height: 0;
+									-webkit-transition: height 200ms ease-in-out;
+									background: #e1e1e1;
+									-webkit-box-sizing:border-box;
+									box-sizing:border-box;
+								}
+								#datepicker_wrap>div {
+									display: none;
+									padding: 5px 5px 25px 5px;
+								}
+
+								.filter {
+									padding: 10px;
+								
+								}
+								.filter:after {
+									content: '\0020';
+									clear: both;
+									display: block;
+									height: 0;
+									font-size: 0;
+									line-height: 0;
+								}
+
+								a.datebox {
+									border: 1px solid #e1e1e1;
+									text-decoration: none;
+									color: #000;
+									padding: 5px 26px 5px 5px;
+									margin: 0px 5px 0 0;
+									position: relative;
+									background: #fff;
+									top: 5px;
+								}
+
+							   .ui-icon-down {
+									position: absolute;
+									top: 50%;
+									right: 5px;
+									background-image: url("http://gmu.baidu.com/demo/assets/icons-36-black.png");
+									-webkit-background-size: 776px 18px;
+									background-size: 776px 18px;
+									width:18px;
+									height: 18px;
+									margin-top: -9px;
+									background-position: 	-216px 50%;
+								}
+								.filter a.ui-state-active, .filter a.ui-state-hover {
+									background: #fff;
+								}
+								.filter a.ui-state-active .ui-icon-down, .filter a.ui-state-hover .ui-icon-down {
+									background-position: 	-180px 50%;
+								}
+
+								.filter a.search {
+									float: right;
+									padding: 5px;
+									margin: 0;
+								}
+								.result {
+									padding: 15px;
+									text-align: left;
+								}
+							</style>	
+							<script>
+							 $(document).ready(function(){
+								$('#pull').click(function(){
+								$.ajax({
+									url:'/',
+									data:{
+										username:$('#username').val(),
+										company:$('#company').val(),
+										city:$('#city').val(),
+										comedate:$('#comedate').val(),
+										arrive:$('#arrive').val(),
+										ordernum1:$('#ordernum1').val(),
+										arrivetime:$('#arrivetime').val,
+									},
+									dataType:'JSON',
+									type:'post',
+									success:function(data){
+										if(data.success){
+											
+										}
+										else{
+											
+										}
+									}
+									
+								});
+								});
+							 });
+							 $(document).ready(function(){
+								
+								$.ajax({
+									url:'/',
+									data:{
+										username:$('#username').val(),
+									},
+									dataType:'JSON',
+									type:'get',
+									success:function(data){
+										if(data.success){
+											$('#company').html(data.company);
+											$('#city').html(data.city);
+											$('#comedate').html(data.comedate);
+											$('#arrive').html(data.arrive);
+												$("#items").empty();
+												var item='';
+												item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+												$("#items").append(item);
+											$('#ordernum1').html(data.ordernum1);
+											$('#arrivetime').html(data.arrivetime);
+										}
+										else{	
+										}
+									}
+									
+								});
+							 });
+							</script>
+							
+</head>
+<body>
+ <div class="header">
+ <a href="#" class="home">
+            <span class="header-icon header-icon-home"></span>
+            <span class="header-name"></span>
+</a>
+<div class="title" id="titleString">赴会信息</div>
+<a href="javascript:history.go(-1);" class="back">
+            <span class="header-icon header-icon-return"></span>
+            <span class="header-name">返回</span>
+        </a>
+ </div>
+	
+	<script type="text/javascript" src="static/Scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/Scripts/bootstrap-datetimepicker.fr.js"></script>
+	<script type="text/javascript" src="static/Scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="static/calendar/touch.js"></script><!--新版zepto合并版中不包括touch.js-->
+    <script type="text/javascript" src="static/calendar/highlight.js"></script>
+    <script type="text/javascript" src="static/calendar/gmu.js"></script>
+    <script type="text/javascript" src="static/calendar/event.js"></script>
+    <script type="text/javascript" src="static/calendar/widget.js"></script>
+    <script type="text/javascript" src="static/calendar/calendar.js"></script>
+	
+    
+	<link rel="stylesheet" type="text/css" href="static/styles/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="static/calendar/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="static/calendar/calendar.default.css" />
+	
+       <div class="container width90 pt20">
+	   
+ <form class="form-horizontal" id="form1">
+ 
+	<div class="control-group">
+	
+		<input name="username" type="text" id="username" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的姓名" />
+	</div>
+	<ul class="search-group unstyled">
+										<li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon7"></span>
+												<span class="coupon-label">工作单位</span>
+												<span class="coupon-input">
+														<input name="company" type="text" id="company" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的工作单位" />
+												</span>
+											</div>
+										   
+										</li>
+										<li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon7"></span>
+												<span class="coupon-label">职务</span>
+												<span class="coupon-input">
+														<input name="work" type="text" id="work" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的职务" />
+												</span>
+											</div>
+										   
+										</li>
+										<li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon location-icon"></span>
+												<span class="coupon-label">出发城市</span>
+												<span class="coupon-input">
+														<select style="font-size: 16px; line-height: 35px;" id="city" name="city">
+														<option >全部</option> 
+															  <option>南宁</option> 
+															  <option>桂林</option> 
+															  <option>郑州</option> 
+														</select>
+												</span>
+											</div>
+										   
+										</li>
+									    <li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon time-icon"></span>
+												<span class="coupon-label">出发日期：</span>
+												<span class="coupon-input"><a id="comedate" class="datebox" href="javascript:void(0)"><span class="ui-icon-down"></span></a></span>
+											</div>
+											<div id="dp_start" class="none">
+											 <div id="datepicker_start"></div>
+											</div>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon location-icon"></span>
+												<span class="coupon-label">出行方式</span>
+												<span class="coupon-input">
+														<select style="font-size: 16px; line-height: 35px;" id="arrive" onchange="show(this.value)">
+														<option>全部</option> 
+															  <option value="1">飞机</option> 
+															  <option value="2">火车</option> 
+															  <option value="3">其他</option> 
+														</select>
+												</span>
+											</div>
+											<div id="items"></div>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon6"></span>
+												<span class="coupon-label">到达日期时间</span>
+												<div class="input-append date form_datetime">
+												<input type="text" id="arrivetime" style="width:140px"placeholder="点击选择到达日期时间" readonly>
+												<span class="add-on"><i class="icon-th"></i></span>
+												</div>
+											</div>
+										</li>
+						   
+	</ul>
+                 <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
+                 <input id="checkOutDate" name="checkOutDate" value="2014-04-12" type="hidden" />
+
+    <div class="control-group tc">
+         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
+    </div>
+  </form>
+  </div>
+
+
+  <div class="footer">
+  <div class="gezifooter">
+    <p style="color:#bbb;">Sida &copy; 版权所有 2016-</p>
+  </div>
+  </div>
+<script type="text/javascript">
+	
+	//选择出行方式后的信息
+	function show(index){
+			if(index==1){
+				$("#items").empty();
+				var item='';
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+				$("#items").append(item);
+			}
+			if(index==2){
+				$("#items").empty();
+				var item='';
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的列车次" /></div>'
+				$("#items").append(item);
+			}
+			if(index==3){
+				$("#items").empty();
+				var item='';
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的出行方式" /></div>'
+				$("#items").append(item);
+			}
+	};
+	     $(".form_datetime").datetimepicker({
+        format: "yyyy-mm-dd hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        startDate: "2016-9-14 10:00",
+        minuteStep: 10,
+		opens:'right',
+    });
+    (function ($, undefined) {
+        $(function () {//dom ready
+            var open = null, today = new Date();
+            var beginday = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate();
+            var endday = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate();
+            //设置开始时间为今天
+            $('#comedate').html(beginday + '<span class="ui-icon-down"></span>');
+            //设置结束事件
+            $('#dateend').html(endday +
+                '<span class="ui-icon-down"></span>');
+            $('#datepicker_start').calendar({//初始化开始时间的datepicker
+                date: $('#comedate').text(), //设置初始日期为文本内容
+                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()), //设置最小日期为当月第一天，既上一月的不能选
+                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31), //设置最大日期为结束日期，结束日期以后的天不能选
+                select: function (e, date, dateStr) {//当选中某个日期时。
+                    var day1 = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
+                    $('#datepicker_end').calendar('minDate', day1).calendar('refresh'); //将结束时间的datepick的最小日期设成所选日期
+                    $('#dp_start').toggle();
+                    //把所选日期赋值给文本
+                    $('#comedate').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#checkInDate').val(dateStr);
+                    
+                    $('#dateend').html($.calendar.formatDate(day1) + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#checkOutDate').val($.calendar.formatDate(day1));
+                }
+            });
+            $('#datepicker_end').calendar({//初始化结束时间的datepicker
+                date: $('#dateend').text(), //设置初始日期为文本内容
+                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
+                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31),
+                select: function (e, date, dateStr) {//当选中某个日期时。
+                    //收起datepicker
+                    open = null;
+                    $('#dp_end').toggle();
+                    //把所选日期赋值给文本
+                    $('#dateend').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
+                    $('#checkOutDate').val(dateStr);
+                }
+            });
+            $('#comedate').click(function (e) {//展开或收起日期
+                $('#comedate').removeClass('ui-state-active');
+                var type = $(this).addClass('ui-state-active').is('#comedate') ? 'start' : 'end';
+                $('#dp_start').toggle();
+
+            }).highlight('ui-state-hover');
+            $('#cityname').click(function (e) {
+                $('.citybox').toggle();
+            });
+            $('.citybox span').click(function (e) {
+                $('#cityname').text($(this).text());
+                $('.citybox').toggle();
+                $('#cityID').val($(this).attr("cityId"));
+            });
+            $('#dateend').click(function (e) {//展开或收起日期
+                $('#dateend').removeClass('ui-state-active');
+                var type = $(this).addClass('ui-state-active').is('#dateend') ? 'start' : 'end';
+                $('#dp_end').toggle();
+
+            }).highlight('ui-state-hover');
+        });
+    })(Zepto);
+</script>
+</body>
+</html>
