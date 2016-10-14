@@ -4,12 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>赴会方式登记</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
-<meta content="yes" name="apple-mobile-web-app-capable" /><link href="styles/bootstrap.min.css" rel="stylesheet" />
+<meta content="yes" name="apple-mobile-web-app-capable" /><link href="static/styles/bootstrap.min.css" rel="stylesheet" />
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<link href="styles/NewGlobal.css" rel="stylesheet" />
-	<script type="text/javascript" src="Scripts/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="Scripts/zepto.js"></script>
+<link href="static/styles/NewGlobal.css" rel="stylesheet" />
+	<script type="text/javascript" src="static/Scripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="static/Scripts/zepto.js"></script>
  <style>
 								.section {
 									background: #f3f3f3;
@@ -153,34 +153,50 @@
         </a>
  </div>
 	
-	<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
-	<script type="text/javascript" src="Scripts/bootstrap-datetimepicker.fr.js"></script>
-	<script type="text/javascript" src="Scripts/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript" src="calendar/touch.js"></script><!--新版zepto合并版中不包括touch.js-->
-    <script type="text/javascript" src="calendar/highlight.js"></script>
-    <script type="text/javascript" src="calendar/gmu.js"></script>
-    <script type="text/javascript" src="calendar/event.js"></script>
-    <script type="text/javascript" src="calendar/widget.js"></script>
-    <script type="text/javascript" src="calendar/calendar.js"></script>
+	<script type="text/javascript" src="static/Scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/Scripts/bootstrap-datetimepicker.fr.js"></script>
+	<script type="text/javascript" src="static/Scripts/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="static/calendar/touch.js"></script><!--新版zepto合并版中不包括touch.js-->
+    <script type="text/javascript" src="static/calendar/highlight.js"></script>
+    <script type="text/javascript" src="static/calendar/gmu.js"></script>
+    <script type="text/javascript" src="static/calendar/event.js"></script>
+    <script type="text/javascript" src="static/calendar/widget.js"></script>
+    <script type="text/javascript" src="static/calendar/calendar.js"></script>
 	
     
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap-datetimepicker.min.css" />
-	<link rel="stylesheet" type="text/css" href="calendar/calendar.css" />
-    <link rel="stylesheet" type="text/css" href="calendar/calendar.default.css" />
+	<link rel="stylesheet" type="text/css" href="static/styles/bootstrap-datetimepicker.min.css" />
+	<link rel="stylesheet" type="text/css" href="static/calendar/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="static/calendar/calendar.default.css" />
 	
        <div class="container width90 pt20">
 	   
- <form class="form-horizontal" action="HotelList.aspx" method="GET" id="form1">
+ <form class="form-horizontal" id="form1">
  
 	<div class="control-group">
 	
 		<input name="username" type="text" id="username" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的姓名" />
 	</div>
-	<div class="control-group">
-		<input name="company" type="text" id="company" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的工作单位" />
-	</div>
 	<ul class="search-group unstyled">
-							
+										<li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon7"></span>
+												<span class="coupon-label">工作单位</span>
+												<span class="coupon-input">
+														<input name="company" type="text" id="company" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的工作单位" />
+												</span>
+											</div>
+										   
+										</li>
+										<li>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon7"></span>
+												<span class="coupon-label">职务</span>
+												<span class="coupon-input">
+														<input name="work" type="text" id="work" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的职务" />
+												</span>
+											</div>
+										   
+										</li>
 										<li>
 											<div class="coupon-nav coupon-nav-style">
 												<span class="search-icon location-icon"></span>
@@ -272,7 +288,8 @@
         autoclose: true,
         todayBtn: true,
         startDate: "2016-9-14 10:00",
-        minuteStep: 10
+        minuteStep: 10,
+		opens:'right',
     });
     (function ($, undefined) {
         $(function () {//dom ready
