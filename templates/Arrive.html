@@ -156,17 +156,11 @@
 	<script type="text/javascript" src="../static/Scripts/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../static/Scripts/bootstrap-datetimepicker.fr.js"></script>
 	<script type="text/javascript" src="../static/Scripts/bootstrap-datetimepicker.js"></script>
-    <script type="text/javascript" src="../static/calendar/touch.js"></script><!--新版zepto合并版中不包括touch.js-->
-    <script type="text/javascript" src="../static/calendar/highlight.js"></script>
-    <script type="text/javascript" src="../static/calendar/gmu.js"></script>
-    <script type="text/javascript" src="../static/calendar/event.js"></script>
-    <script type="text/javascript" src="../static/calendar/widget.js"></script>
-    <script type="text/javascript" src="../static/calendar/calendar.js"></script>
+
 	
     
 	<link rel="stylesheet" type="text/css" href="../static/styles/bootstrap-datetimepicker.min.css" />
-	<link rel="stylesheet" type="text/css" href="../static/calendar/calendar.css" />
-    <link rel="stylesheet" type="text/css" href="../static/calendar/calendar.default.css" />
+
 	
        <div class="container width90 pt20">
 	   
@@ -204,30 +198,7 @@
 											</div>
 										   
 										</li>
-										<li>
-											<div class="coupon-nav coupon-nav-style">
-												<span class="search-icon location-icon"></span>
-												<span class="coupon-label">出发城市</span>
-												<span class="coupon-input">
-														<select style="font-size: 16px; line-height: 35px;height:36px;" id="city" name="city">
-														<option >全部</option> 
-															  <option>南宁</option> 
-															  <option>桂林</option> 
-															  <option>郑州</option> 
-														</select>
-												</span>
-											</div>
-										   
-										</li>
 									    <li>
-											<div class="coupon-nav coupon-nav-style">
-												<span class="search-icon time-icon"></span>
-												<span class="coupon-label">出发日期：</span>
-												<span class="coupon-input"><a id="comedate" class="datebox" href="javascript:void(0)"><span class="ui-icon-down"></span></a></span>
-											</div>
-											<div id="dp_start" class="none">
-											 <div id="datepicker_start"></div>
-											</div>
 											<div class="coupon-nav coupon-nav-style">
 												<span class="search-icon location-icon"></span>
 												<span class="coupon-label">出行方式</span>
@@ -252,8 +223,6 @@
 										</li>
 						   
 	</ul>
-                 <input id="checkInDate" name="checkInDate" value="2014-04-11" type="hidden" />
-                 <input id="checkOutDate" name="checkOutDate" value="2014-04-12" type="hidden" />
 
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
@@ -298,67 +267,6 @@
         minuteStep: 10,
 		opens:'right',
     });
-    (function ($, undefined) {
-        $(function () {//dom ready
-            var open = null, today = new Date();
-            var beginday = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate();
-            var endday = today.getFullYear()+'-'+today.getMonth()+'-'+today.getDate();
-            //设置开始时间为今天
-            $('#comedate').html(beginday + '<span class="ui-icon-down"></span>');
-            //设置结束事件
-            $('#dateend').html(endday +
-                '<span class="ui-icon-down"></span>');
-            $('#datepicker_start').calendar({//初始化开始时间的datepicker
-                date: $('#comedate').text(), //设置初始日期为文本内容
-                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()), //设置最小日期为当月第一天，既上一月的不能选
-                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31), //设置最大日期为结束日期，结束日期以后的天不能选
-                select: function (e, date, dateStr) {//当选中某个日期时。
-                    var day1 = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1);
-                    $('#datepicker_end').calendar('minDate', day1).calendar('refresh'); //将结束时间的datepick的最小日期设成所选日期
-                    $('#dp_start').toggle();
-                    //把所选日期赋值给文本
-                    $('#comedate').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
-                    $('#checkInDate').val(dateStr);
-                    
-                    $('#dateend').html($.calendar.formatDate(day1) + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
-                    $('#checkOutDate').val($.calendar.formatDate(day1));
-                }
-            });
-            $('#datepicker_end').calendar({//初始化结束时间的datepicker
-                date: $('#dateend').text(), //设置初始日期为文本内容
-                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
-                maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 31),
-                select: function (e, date, dateStr) {//当选中某个日期时。
-                    //收起datepicker
-                    open = null;
-                    $('#dp_end').toggle();
-                    //把所选日期赋值给文本
-                    $('#dateend').html(dateStr + '<span class="ui-icon-down"></span>').removeClass('ui-state-active');
-                    $('#checkOutDate').val(dateStr);
-                }
-            });
-            $('#comedate').click(function (e) {//展开或收起日期
-                $('#comedate').removeClass('ui-state-active');
-                var type = $(this).addClass('ui-state-active').is('#comedate') ? 'start' : 'end';
-                $('#dp_start').toggle();
-
-            }).highlight('ui-state-hover');
-            $('#cityname').click(function (e) {
-                $('.citybox').toggle();
-            });
-            $('.citybox span').click(function (e) {
-                $('#cityname').text($(this).text());
-                $('.citybox').toggle();
-                $('#cityID').val($(this).attr("cityId"));
-            });
-            $('#dateend').click(function (e) {//展开或收起日期
-                $('#dateend').removeClass('ui-state-active');
-                var type = $(this).addClass('ui-state-active').is('#dateend') ? 'start' : 'end';
-                $('#dp_end').toggle();
-
-            }).highlight('ui-state-hover');
-        });
-    })(Zepto);
 </script>
 </body>
 </html>
