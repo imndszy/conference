@@ -85,34 +85,27 @@
 							 $(document).ready(function(){
 								$('#pull').click(function(){
 								$.ajax({
-									url:'/',
+									url:'/leave_handler',
 									data:{
 										username:$('#username').val(),
 										company:$('#company').val(),
-										city:$('#city').val(),
-										leavedate:$('#leavedate').val(),
 										leave:$('#leave').val(),
 										ordernum2:$('#ordernum2').val(),
 										leavetime:$('#leavetime').val,
 									},
 									dataType:'JSON',
 									type:'post',
-									success:function(data){
-										if(data.success){
-											
-										}
-										else{
-											
-										}
+									success:function(){
+										alert("提交成功");
 									}
 									error:
 								});
 								});
 							 });
-							 $(document).ready(function(){
+							 /*$(document).ready(function(){
 								
 								$.ajax({
-									url:'/',
+									url:'/leave_handler',
 									data:{
 										username:$('#username').val(),
 									},
@@ -136,7 +129,7 @@
 									}
 									error:
 								});
-							 });
+							 });*/
 							</script>
 							
 </head>

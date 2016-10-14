@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>赴会方式登记</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" />
-<meta content="yes" name="apple-mobile-web-app-capable" /><link href="../static/styles/bootstrap.min.css" rel="stylesheet" />
+<meta content="yes" name="apple-mobile-web-app-capable" /><link href="../static/styles/bootstrap.min.css" rel="stylesheet" /><link rel="stylesheet" href="../static/styles/jquery-labelauty.css">
 <meta name="format-detection" content="telephone=no">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <link href="../static/styles/NewGlobal.css" rel="stylesheet" />
@@ -84,26 +84,37 @@
 							<script>
 							 $(document).ready(function(){
 								$('#pull').click(function(){
-								$.ajax({
-									url:'/',
+									var visit = 0;
+									var box0 = document.getElementById("box0");
+									var box1 = document.getElementById("box1");
+									var box2 = document.getElementById("box2");
+									if(box0.checked){
+										visit = 0;
+									}
+									else if(box1.checked){
+										if(box2.checked){
+											visit=3;
+										}
+										else{visit=1}
+									}
+									else{visit=2;}
+									$.ajax({
+									url:'/arrive_handler',
 									data:{
+										num:1,
 										username:$('#username').val(),
 										company:$('#company').val(),
-										city:$('#city').val(),
-										comedate:$('#comedate').val(),
+										work:$('#work').val(),
+										tel:$('#tel').val(),
 										arrive:$('#arrive').val(),
 										ordernum1:$('#ordernum1').val(),
-										arrivetime:$('#arrivetime').val,
+										arrivetime:$('#arrivetime').val(),
+										visit:visit,
 									},
 									dataType:'JSON',
 									type:'post',
-									success:function(data){
-										if(data.success){
-											
-										}
-										else{
-											
-										}
+									success:function(){
+										alert("提交成功");
 									}
 									
 								});
@@ -112,17 +123,19 @@
 							 $(document).ready(function(){
 								
 								$.ajax({
-									url:'/',
+									url:'/arrive_handler',
 									data:{
-										username:$('#username').val(),
+										num:2,
 									},
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
 										if(data.success){
 											$('#company').html(data.company);
-											$('#city').html(data.city);
-											$('#comedate').html(data.comedate);
+											$('#username').html(data.username);
+											$('#school').html(data.school);
+											$('#work').html(data.work);
+											$('#tel').html(data.tel);
 											$('#arrive').html(data.arrive);
 												$("#items").empty();
 												var item='';
@@ -137,6 +150,7 @@
 									
 								});
 							 });
+							 
 							</script>
 							
 </head>
@@ -152,7 +166,7 @@
             <span class="header-name">返回</span>
         </a>
  </div>
-	
+	<script type="text/javascript" src="../static/Scripts/jquery-labelauty.js"></script>
 	<script type="text/javascript" src="../static/Scripts/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../static/Scripts/bootstrap-datetimepicker.fr.js"></script>
 	<script type="text/javascript" src="../static/Scripts/bootstrap-datetimepicker.js"></script>
@@ -167,7 +181,7 @@
  <form class="form-horizontal" id="form1">
 	<div class="control-group">
 	
-		<input name="username" type="text" id="username" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入学校名称" />
+		<input name="school" type="text" id="school" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入学校名称" />
 	</div>
 	<div class="control-group">
 	
@@ -217,13 +231,26 @@
 												<span class="coupon-label">到达日期时间</span>
 												<div class="input-append date form_datetime">
 												<input type="text" id="arrivetime" style="width:140px"placeholder="点击选择到达日期时间" readonly>
-												<span class="add-on"><i class="icon-th"></i></span>
+												<span class="add-on"><i class="icon-th" style="background:#b3b3b3"></i></span>
 												</div>
 											</div>
 										</li>
+										<li>
+												<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon location-icon"></span>
+												<span class="coupon-label" style="width:280px">是否参观交流（详见会议安排）</span>
+												<input type="checkbox" name="checkbox" id="box1" value="1" data-labelauty="上午参加">
+												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
+												<input type="checkbox" name="checkbox" id="box0" value="0" disabled data-labelauty="可不选">
+												</div>
+													
+												
+										</li>
+										
+													
+										
 						   
 	</ul>
-
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
@@ -237,6 +264,10 @@
   </div>
   </div>
 <script type="text/javascript">
+	//radio JS特效调用
+	$(function(){
+		$(':input').labelauty();
+	});
 	
 	//选择出行方式后的信息
 	function show(index){
@@ -259,6 +290,7 @@
 				$("#items").append(item);
 			}
 	};
+	//bootstrap datetimepicker js特效
 	     $(".form_datetime").datetimepicker({
         format: "yyyy-mm-dd hh:ii",
         autoclose: true,
