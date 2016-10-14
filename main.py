@@ -25,10 +25,6 @@ def wechat_auth():
 def wechat_msg():
     rec = request.data
     msg = parse(rec)
-    # if msg['MsgType'] == 'event':
-    #     from msg_handler import handle_event
-    #     content = handle_event(msg)
-    #     return res_text_msg(msg, content)
 
 
 @app.route('/index', methods=['GET', 'POST'])
@@ -40,10 +36,20 @@ def index():
 def arrive():
     return render_template('Arrive.html')
 
+
 @app.route('/leave')
-def depart():
+def leave():
     return render_template('Leave.html')
 
+
+@app.route('/arrive_handler')
+def arrive_handler():
+    pass
+
+
+@app.route('/leave_handler')
+def leave_handler():
+    pass
 
 
 def verification():
