@@ -5,7 +5,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 DB_HOSTNAME = 'localhost'
-DB_PORT = '3306'
+DB_PORT = 3306
 DB_USERNAME = 'szy'
 DB_PASSWORD = '123456'
 DB_NAME = 'conference'
