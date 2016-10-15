@@ -110,17 +110,19 @@
 										arrive:$('#arrive').val(),
 										ordernum1:$('#ordernum1').val(),
 										arrivetime:$('#arrivetime').val(),
-										visit:visit,
+										visit:visit
 									},
 									dataType:'JSON',
 									type:'post',
 									success:function(){
 										alert("提交成功");
+										window.close();
 									}
 								});
 								});
 							 });
-							 /*$(document).ready(function(){
+							 $(document).ready(function(){
+							 $('#pull2').click(function(){
 								$.ajax({
 									url:'/arrive_get',
 									data:{
@@ -130,16 +132,18 @@
 									type:'get',
 									success:function(data){
 										if(data.success){
+										for(i=0;i<9;i++){
+											document.write(data[i].value);}
 											$('#company').html(data.company);
 											$('#username').html(data.username);
 											$('#school').html(data.school);
 											$('#work').html(data.work);
 											$('#tel').html(data.tel);
-											$('#arrive').html(data.arrive);
+											/*$('#arrive').html(data.arrive);
 												$("#items").empty();
 												var item='';
 												item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
-												$("#items").append(item);
+												$("#items").append(item);*/
 											$('#ordernum1').html(data.ordernum1);
 											$('#arrivetime').html(data.arrivetime);
 										}
@@ -147,8 +151,8 @@
 										}
 									}
 									
-								});
-							 });*/
+								});});
+							 });
 							 
 							</script>
 							
@@ -250,6 +254,9 @@
 	</ul>
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
+    </div>
+	<div class="control-group tc">
+         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull2" >立即提交</button>
     </div>
   </form>
   </div>
