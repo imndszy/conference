@@ -116,6 +116,7 @@
 									type:'post',
 									success:function(){
 										alert("提交成功");
+										window.close();
 									}
 								});
 								});
@@ -129,6 +130,7 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
+											alert(data.name);
 											$('#company').html(data.company);
 											$('#username').html(data.username);
 											$('#school').html(data.school);
@@ -141,10 +143,7 @@
 												$("#items").append(item);
 											$('#ordernum1').html(data.ordernum1);
 											$('#arrivetime').html(data.arrivetime);
-										
-										
 									}
-									
 								});
 							 });
 							 
