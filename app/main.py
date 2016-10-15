@@ -52,7 +52,7 @@ def leave():
 @app.route('/arrive_handler')
 def arrive_handler():
     print 'handler'
-    print request.data
+    print request.values
     if request.args.get('num1','') == u'1':
         print 1
         print request
