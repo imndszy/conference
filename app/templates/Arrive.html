@@ -129,7 +129,6 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
-										if(data.success){
 											$('#company').html(data.company);
 											$('#username').html(data.username);
 											$('#school').html(data.school);
@@ -142,9 +141,8 @@
 												$("#items").append(item);
 											$('#ordernum1').html(data.ordernum1);
 											$('#arrivetime').html(data.arrivetime);
-										}
-										else{	
-										}
+										
+										
 									}
 									
 								});
