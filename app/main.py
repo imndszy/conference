@@ -52,8 +52,10 @@ def leave():
 @app.route('/arrive_handler')
 def arrive_handler():
     print 'handler'
-    if request.args.get('num') == u'1':
+    print request.data
+    if request.args.get('num1','') == u'1':
         print 1
+        print request
         da = request.args
         # session['school'] = da.get('school')
         session['company'] = da.get('company')
@@ -74,7 +76,7 @@ def arrive_handler():
         #             tel=da.get('tel'),arrive=da.get('arrive'),
         #             arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
         #             visit=da.get('visit'))
-    elif request.args.get('num') == u'2':
+    elif request.args.get('num2') == u'2':
         print 2
         print jsonify(company='asd',username='asd',
                        school='sad',work='asd',tel='123',
