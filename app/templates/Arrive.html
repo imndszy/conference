@@ -83,7 +83,7 @@
 							</style>	
 							<script>
 							 $(document).ready(function(){
-								$('#btn').click(function(){
+								$('#pull').click(function(){
 									var visit = 0;
 									var box0 = document.getElementById("box0");
 									var box1 = document.getElementById("box1");
@@ -103,8 +103,8 @@
 									data:{
 										num1:1,
 										username:$('#username').val(),
-										sckool:$('#school').val(),
 										company:$('#company').val(),
+										school:$('#school').val,
 										work:$('#work').val(),
 										tel:$('#tel').val(),
 										arrive:$('#arrive').val(),
@@ -249,7 +249,7 @@
 						   
 	</ul>
     <div class="control-group tc">
-         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="btn" >立即提交</button>
+         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
   </form>
   </div>
