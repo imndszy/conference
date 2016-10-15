@@ -6,9 +6,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 DB_HOSTNAME = 'localhost'
 DB_PORT = '3306'
-DB_USERNAME = 'root'
-DB_PASSWORD = 'hafjd867'
-DB_NAME = 'weixin'
+DB_USERNAME = 'szy'
+DB_PASSWORD = '123456'
+DB_NAME = 'conference'
 APP_ID = ''
 SECRET = ''
 TOKEN = ''

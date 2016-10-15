@@ -14,6 +14,7 @@ from app.handler import handle_arrive_post
 
 app = Flask(__name__)
 app.debug = True
+app.config['SECRET_KEY'] = 'asdasdasdadadada'
 
 create_engine(DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOSTNAME, DB_PORT, charset='utf8')
 
@@ -33,7 +34,7 @@ def wechat_msg():
         msg = parse(rec)
 
 
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -50,8 +51,10 @@ def leave():
 
 @app.route('/arrive_handler')
 def arrive_handler():
-    if request.data.get('num') == 1:
-        da = request.data
+    print 'handler'
+    if request.args.get('num') == u'1':
+        print 1
+        da = request.args
         # session['school'] = da.get('school')
         session['company'] = da.get('company')
         session['username'] = da.get('username')
@@ -71,9 +74,15 @@ def arrive_handler():
         #             tel=da.get('tel'),arrive=da.get('arrive'),
         #             arrivetime=da.get('arrivetime'),ordernum1=da.get('ordernum1'),
         #             visit=da.get('visit'))
-        return jsonify(data='success')
-    elif request.data.get('num') == 2:
-        pass
+    elif request.args.get('num') == u'2':
+        print 2
+        print jsonify(company='asd',username='asd',
+                       school='sad',work='asd',tel='123',
+                       arrive='1',ordernum='63546',arrivetime='2016-10-20-10:20')
+        return jsonify(company='asd',username='asd',
+                       school='sad',work='asd',tel='123',
+                       arrive='1',ordernum='63546',arrivetime='2016-10-20-10:20')
+    return 'hah'
 
 
 @app.route('/leave_handler')
