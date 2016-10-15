@@ -95,11 +95,11 @@
 										if(box2.checked){
 											visit=3;
 										}
-										else{visit=1}
+										else{visit=1;}
 									}
 									else{visit=2;}
 									$.ajax({
-									url:'/arrive_handler',
+									url:'/arrive_post',
 									data:{
 										num1:1,
 										username:$('#username').val(),
@@ -120,9 +120,8 @@
 								});
 							 });
 							 $(document).ready(function(){
-								
 								$.ajax({
-									url:'/arrive_handler',
+									url:'/arrive_get',
 									data:{
 										num2:2,
 									},
@@ -242,8 +241,6 @@
 												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
 												<input type="checkbox" name="checkbox" id="box0" value="0" disabled data-labelauty="可不选">
 												</div>
-													
-												
 										</li>
 										
 													
