@@ -116,12 +116,11 @@
 									type:'post',
 									success:function(){
 										alert("提交成功");
-										window.close();
 									}
 								});
 								});
 							 });
-							 $(document).ready(function(){
+							 /*$(document).ready(function(){
 								$.ajax({
 									url:'/arrive_get',
 									data:{
@@ -130,7 +129,7 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
-											alert(data.name);
+										if(data.success){
 											$('#company').html(data.company);
 											$('#username').html(data.username);
 											$('#school').html(data.school);
@@ -143,9 +142,13 @@
 												$("#items").append(item);
 											$('#ordernum1').html(data.ordernum1);
 											$('#arrivetime').html(data.arrivetime);
+										}
+										else{	
+										}
 									}
+									
 								});
-							 });
+							 });*/
 							 
 							</script>
 							
