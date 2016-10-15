@@ -153,19 +153,18 @@
 									
 								});});
 							 });
-							 $(function(){
-								$('#add').click(function)(){
-								$.ajax({
-									url:'/test',
-									data:{
-										a:$('#a').val(),
-										b:$('#b').val()
-									},
-									
-									dataType:'JSON',
-									type:'get',
-								 success: function(data){
-                    $("#result").html(data.result);
+							 $(function() {
+            $('#test').click(function(){
+              $.ajax({
+                url: '/test',
+                data:{
+                  a: $('#a').val(),
+                  b: $('#b').val()
+                },
+                dataType: 'JSON',
+                type: 'GET',
+                success: function(data){
+                    $("#add").html(data.result);
                 }
                 });
              });
