@@ -101,7 +101,7 @@
 									$.ajax({
 									url:'/arrive_handler',
 									data:{
-										num:1,
+										num1:1,
 										username:$('#username').val(),
 										company:$('#company').val(),
 										work:$('#work').val(),
@@ -116,7 +116,6 @@
 									success:function(){
 										alert("提交成功");
 									}
-									
 								});
 								});
 							 });
@@ -125,7 +124,7 @@
 								$.ajax({
 									url:'/arrive_handler',
 									data:{
-										num:2,
+										num2:2,
 									},
 									dataType:'JSON',
 									type:'get',
