@@ -136,13 +136,32 @@
 											document.getElementById("school").value=data.school;
 											document.getElementById("work").value=data.work;
 											document.getElementById("tel").value=data.tel;
-											/*$('#arrive').html(data.arrive);
-												$("#items").empty();
-												var item='';
-												item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
-												$("#items").append(item);*/
-											//$('#ordernum1').html(data.ordernum1);
-											document.getElementById("arrivetime").value=data.arrivetime;}
+											if(data.arrive=1){
+												document.getElementById("arrive").value=1;
+												}
+											if(data.arrive=2){
+												document.getElementById("arrive").value=2;
+												}
+											if(data.arrive=3){
+												document.getElementById("arrive").value=3;
+												}
+											$("#items").empty();
+											var item='';
+											item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+											$("#items").append(item);
+											document.getElementById("ordernum1").value=data.ordernum1;
+											document.getElementById("arrivetime").value=data.arrivetime;
+											if(data.visit==1){
+												document.getElementById("box1").checked=true;
+											}
+											if(data.visit==2){
+												document.getElementById("box2").checked=true;
+											}
+											if(data.visit==3){
+												document.getElementById("box1").checked=true;
+												document.getElementById("box2").checked=true;
+											}
+											}
 									}
 								});
 							 });
@@ -188,7 +207,7 @@
 												<span class="search-icon coupon-icon4"></span>
 												<span class="coupon-label">姓名</span>
 												<span class="coupon-input">
-														<input name="username" type="text" id="username" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" value="请输入您的姓名" />
+														<input name="username" type="text" id="username" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的姓名" />
 												</span>
 											</div>
 											<div class="coupon-nav coupon-nav-style">
