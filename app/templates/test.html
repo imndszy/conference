@@ -14,7 +14,7 @@
                 dataType: 'JSON',
                 type: 'GET',
                 success: function(data){
-					$("#name").html(data.name);
+					document.getElementById("school").value=data.school;
                     $("#result").html(data.result);
                 }
                 });
