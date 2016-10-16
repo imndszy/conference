@@ -1,10 +1,15 @@
 # -*- coding:utf8 -*-
 # Author: shizhenyu96@gamil.com
 # github: https://github.com/imndszy
-from app.db import insert, create_engine, select
-from app.config import DB_USERNAME,DB_PASSWORD,DB_NAME,DB_HOSTNAME,DB_PORT
+from app.db import insert, create_engine, select, update
+
 
 def handle_arrive_post(**kw):
-    print 'asds'
-    create_engine(DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOSTNAME, DB_PORT, charset='utf8')
-    return insert('wechat',**kw)
+    result = select('select * from wechat1 where username=? and school=?', kw['username'], kw['school'])
+    if result:
+        print 'delete',update('delete from wechat1 where username=? and school = ?',kw['username'], kw['school'])
+    return insert('wechat1',**kw)
+
+def handle_arrive_get(username,school):
+    return select('select * from wechat1 where username=? and school=?',username,school)
+
