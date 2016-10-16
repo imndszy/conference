@@ -130,6 +130,7 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
+											if(data.result=="ok"){
 											document.getElementById("company").value=data.company;
 											document.getElementById("username").value=data.username;
 											document.getElementById("school").value=data.school;
@@ -141,7 +142,7 @@
 												item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 												$("#items").append(item);*/
 											//$('#ordernum1').html(data.ordernum1);
-											document.getElementById("arrivetime").value=data.arrivetime;
+											document.getElementById("arrivetime").value=data.arrivetime;}
 									}
 								});
 							 });
