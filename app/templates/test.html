@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+     <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
+      <script type=text/javascript>
+        $(function() {
+            $('#b').click(function(){
+              $.ajax({
+                url: '/test',
+                data:{
+                  name: $('#name').val(),
+                  school: $('#school').val()
+                },
+                dataType: 'JSON',
+                type: 'GET',
+                success: function(data){
+					$("#name").html(data.name);
+                    $("#result").html(data.result);
+                }
+                });
+             });
+        });
+  </script>
+  </head>
+  <body>
+    <div class="container">
+    <input type="text" id='name' name="name" value=""><br/>
+    <input type="text" id='school' name="school" value=""><br/>
+    <input type="text" id="result" name="result" value=""><br/>
+    <input type="button"  id="btn" value="button">
+    </div>
+  </body>
+</html>
