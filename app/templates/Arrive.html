@@ -132,20 +132,18 @@
 									type:'get',
 									success:function(data){
 										if(data.success){
-										for(i=0;i<9;i++){
-											document.write(data[i].value);}
-											$('#company').html(data.company);
-											$('#username').html(data.username);
-											$('#school').html(data.school);
-											$('#work').html(data.work);
-											$('#tel').html(data.tel);
+											document.getElementById("company").value=data.company;
+											document.getElementById("username").value=data.username;
+											document.getElementById("school").value=data.school;
+											document.getElementById("work").value=data.work;
+											document.getElementById("tel").value=data.tel;
 											/*$('#arrive').html(data.arrive);
 												$("#items").empty();
 												var item='';
 												item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 												$("#items").append(item);*/
-											$('#ordernum1').html(data.ordernum1);
-											$('#arrivetime').html(data.arrivetime);
+											//$('#ordernum1').html(data.ordernum1);
+											document.getElementById("arrivetime").value=data.arrivetime;
 										}
 										else{	
 										}
