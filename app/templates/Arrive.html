@@ -122,7 +122,6 @@
 								});
 							 });
 							 $(document).ready(function(){
-							 $('#pull2').click(function(){
 								$.ajax({
 									url:'/arrive_get',
 									data:{
@@ -131,7 +130,6 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
-										if(data.success){
 											document.getElementById("company").value=data.company;
 											document.getElementById("username").value=data.username;
 											document.getElementById("school").value=data.school;
@@ -144,30 +142,10 @@
 												$("#items").append(item);*/
 											//$('#ordernum1').html(data.ordernum1);
 											document.getElementById("arrivetime").value=data.arrivetime;
-										}
-										else{	
-										}
 									}
-									
-								});});
+								});
 							 });
-							 $(function() {
-            $('#add').click(function(){
-              $.ajax({
-                url: '/test',
-                data:{
-                  a: $('#a').val(),
-                  b: $('#b').val()
-                },
-                dataType: 'JSON',
-                type: 'GET',
-                success: function(data){
-                    $("#add").html(data.result);
-                }
-                });
-             });
-        });
-							</script>
+							 </script>
 							
 </head>
 <body>
@@ -260,25 +238,12 @@
 												<input type="checkbox" name="checkbox" id="box0" value="0" disabled data-labelauty="可不选">
 												</div>
 										</li>
-										
-													
-										
-						   
 	</ul>
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
-	 <div class="control-group tc">
-         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull2" >立即提交</button>
-    </div>
-	<input type="text" id="a" size="5" name="a">+
-	<input type="text" id="b" size="5" name="b">=
-	<span id="result">?</span>
-	<button class="btn" id="add">sub</button>
   </form>
   </div>
-
-
   <div class="footer">
   <div class="gezifooter">
     <p style="color:#bbb;">Sida &copy; 版权所有 2016-</p>
