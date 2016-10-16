@@ -4,6 +4,7 @@
      <script type="text/javascript" src="../static/js/jquery-1.8.3.min.js"></script>
       <script type=text/javascript>
         $(function() {
+            $('#btn').click(function(){
               $.ajax({
                 url: '/test',
                 data:{
@@ -12,11 +13,12 @@
                 },
                 dataType: 'JSON',
                 type: 'GET',
-                success: function(data){
-					document.getElementById("school").value=data.school;
-                    $("#result").html(data.result);
+                success: function(){
+					alert("提交成功");
+					window.close();
                 }
                 });
+             });
         });
   </script>
   </head>
@@ -25,6 +27,7 @@
     <input type="text" id='name' name="name" value=""><br/>
     <input type="text" id='school' name="school" value=""><br/>
     <span id="result" >result</span><br/>
+    <input type="button"  id="btn" value="button">
     </div>
   </body>
 </html>
