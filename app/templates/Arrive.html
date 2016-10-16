@@ -116,7 +116,17 @@
 									type:'post',
 									success:function(){
 										alert("提交成功");
-										window.close();
+										document.getElementById("box1").disabled=true;
+										document.getElementById("box2").disabled=true;
+										document.getElementById("company").disabled=true;
+										document.getElementById("username").disabled=true;
+										document.getElementById("username").value="fes";
+										document.getElementById("school").disabled=true;
+										document.getElementById("work").disabled=true;
+										document.getElementById("tel").disabled=true;
+										document.getElementById("arrive").disabled=true;
+										document.getElementById("ordernum1").disabled=true;
+										document.getElementById("arrivetime").disabled=true;
 									}
 								});
 								});
@@ -192,7 +202,7 @@
 	
        <div class="container width90 pt20">
 	   
- <form class="form-horizontal" id="form1">
+ <form class="form-horizontal">
 	<div class="control-group">
 	
 		<input name="school" type="text" id="school" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入学校名称" />
@@ -259,10 +269,13 @@
 												</div>
 										</li>
 	</ul>
+  </form>
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
-  </form>
+	<div class="control-group tc">
+         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>
+    </div>
   </div>
   <div class="footer">
   <div class="gezifooter">
@@ -274,7 +287,33 @@
 	$(function(){
 		$(':input').labelauty();
 	});
-	
+	/*$("#change").click(function(){
+										document.getElementById("box1").disabled=true;
+										document.getElementById("box2").disabled=true;
+										document.getElementById("company").disabled=true;
+										document.getElementById("username").disabled=true;
+										document.getElementById("username").value="fes";
+										document.getElementById("school").disabled=true;
+										document.getElementById("work").disabled=true;
+										document.getElementById("tel").disabled=true;
+										document.getElementById("arrive").disabled=true;
+										document.getElementById("ordernum1").disabled=true;
+										document.getElementById("arrivetime").disabled=true;
+										
+	});*/
+	$('#change2').click(function(){
+			document.getElementById("box1").disabled=false;
+			document.getElementById("box2").disabled=false;
+			document.getElementById("company").disabled=false;
+			document.getElementById("username").disabled=false;
+			document.getElementById("school").disabled=false;
+			document.getElementById("work").disabled=false;
+			document.getElementById("tel").disabled=false;
+			document.getElementById("arrive").disabled=false;
+			document.getElementById("ordernum1").disabled=false;
+			document.getElementById("arrivetime").disabled=false;
+			
+	});
 	//选择出行方式后的信息
 	function show(index){
 			if(index==1){
