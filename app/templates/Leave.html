@@ -97,13 +97,17 @@
 									type:'post',
 									success:function(){
 										alert("提交成功");
+										document.getElementById('username').disabled=true;
+										document.getElementById('school').disabled=true;
+										document.getElementById('leave').disabled=true;
+										document.getElementById('ordernum2').disabled=true;
+										document.getElementById('leavetime').disabled=true;
+										document.getElementById('cli').onclick=null;
 									}
-									error:
 								});
 								});
 							 });
 							 $(document).ready(function(){
-								
 								$.ajax({
 									url:'/leave_get',
 									data:{
@@ -112,21 +116,26 @@
 									dataType:'JSON',
 									type:'get',
 									success:function(data){
-										if(data.success){
-											$('#name').html(data.name);
-											$('#school').html(data.school);
-											$('#leave').html(data.leave);
-												$("#items").empty();
-												var item='';
-												item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
-												$("#items").append(item);
-											$('#ordernum2').html(data.ordernum2);
-											$('#leavetime').html(data.leavetime);
-										}
-										else{	
+										if(data.result=="ok"){
+											document.getElementById("username").value=data.username;
+											document.getElementById("school").value=data.school;
+											if(data.leave=1){
+												document.getElementById("leave").value=1;
+												}
+											if(data.leave=2){
+												document.getElementById("leave").value=2;
+												}
+											if(data.leave=3){
+												document.getElementById("leave").value=3;
+												}
+											$("#items").empty();
+											var item='';
+											item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+											$("#items").append(item);
+											document.getElementById("ordernum2").value=data.ordernum2;
+											document.getElementById("leavetime").value=data.leavetime;
 										}
 									}
-									error:
 								});
 							 });
 							</script>
@@ -189,11 +198,14 @@
 										</li>
 						   
 	</ul>
+ </form>
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
-  </form>
-  </div>
+	<div class="control-group tc">
+         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>
+    </div>
+ </div>
 
 
   <div class="footer">
@@ -202,7 +214,14 @@
   </div>
   </div>
 <script type="text/javascript">
-	
+	//解锁文本框 可编辑
+	$('#change2').click(function(){
+			document.getElementById('username').disabled=false;
+			document.getElementById('school').disabled=false;
+			document.getElementById('leave').disabled=false;
+			document.getElementById('ordernum2').disabled=false;
+			document.getElementById('leavetime').disabled=false;
+	});
 	//选择出行方式后的信息
 	function show(index){
 			if(index==1){
@@ -214,16 +233,17 @@
 			if(index==2){
 				$("#items").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的列车次" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的列车次" /></div>'
 				$("#items").append(item);
 			}
 			if(index==3){
 				$("#items").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的出行方式" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的出行方式" /></div>'
 				$("#items").append(item);
 			}
 	};
+	//bootstrap datetimepicker js特效
 	     $(".form_datetime").datetimepicker({
         format: "yyyy-mm-dd hh:ii",
         autoclose: true,

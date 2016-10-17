@@ -126,6 +126,7 @@
 										document.getElementById("arrive").disabled=true;
 										document.getElementById("ordernum1").disabled=true;
 										document.getElementById("arrivetime").disabled=true;
+										
 									}
 								});
 								});
@@ -254,7 +255,7 @@
 												<span class="coupon-label">到达日期时间</span>
 												<div class="input-append date form_datetime">
 												<input type="text" id="arrivetime" style="width:140px" placeholder="点击选择到达日期时间" readonly>
-												<span class="add-on"><i class="icon-th" style="background:#8d767c"></i></span>
+												<span class="add-on" ><i class="icon-th" style="background:#8d767c"></i></span>
 												</div>
 											</div>
 										</li>
@@ -282,10 +283,11 @@
   </div>
   </div>
 <script type="text/javascript">
-	//radio JS特效调用
+	//checked JS特效调用
 	$(function(){
 		$(':input').labelauty();
 	});
+	//锁定文本框测试
 	/*$("#change").click(function(){
 										document.getElementById("box1").disabled=true;
 										document.getElementById("box2").disabled=true;
@@ -299,6 +301,7 @@
 										document.getElementById("arrivetime").disabled=true;
 										
 	});*/
+	//解锁文本框 可编辑
 	$('#change2').click(function(){
 			document.getElementById("box1").disabled=false;
 			document.getElementById("box2").disabled=false;
