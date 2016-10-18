@@ -116,17 +116,6 @@
 									type:'post',
 									success:function(){
 										alert("提交成功");
-										document.getElementById("box1").disabled=true;
-										document.getElementById("box2").disabled=true;
-										document.getElementById("company").disabled=true;
-										document.getElementById("username").disabled=true;
-										document.getElementById("school").disabled=true;
-										document.getElementById("work").disabled=true;
-										document.getElementById("tel").disabled=true;
-										document.getElementById("arrive").disabled=true;
-										document.getElementById("ordernum1").disabled=true;
-										document.getElementById("arrivetime").disabled=true;
-										
 									}
 								});
 								});
@@ -159,24 +148,31 @@
 											var item='';
 											item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 											$("#items").append(item);
+											$("#change").empty();
 											var	but='';
-											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >修改</button>'
+											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >修改</button></div>'
 											$("#change").append(but);
 											document.getElementById("ordernum1").value=data.ordernum1;
 											document.getElementById("arrivetime").value=data.arrivetime;
 											if(data.visit==1){
 												document.getElementById("box1").checked=true;
+												document.getElementById("box0").checked=false;
 											}
 											if(data.visit==2){
 												document.getElementById("box2").checked=true;
+												document.getElementById("box0").checked=false;
 											}
 											if(data.visit==3){
 												document.getElementById("box1").checked=true;
 												document.getElementById("box2").checked=true;
-										
+												document.getElementById("box0").checked=false;
+											}
+											if(data.visit==0){
+												document.getElementById("box0").checked=true;
 											}
 											document.getElementById("box1").disabled=true;
 											document.getElementById("box2").disabled=true;
+											document.getElementById("box0").disabled=true;
 											document.getElementById("company").disabled=true;
 											document.getElementById("username").disabled=true;
 											document.getElementById("school").disabled=true;
@@ -260,8 +256,9 @@
 												<span class="search-icon coupon-icon6"></span>
 												<span class="coupon-label">到达日期时间</span>
 												<div class="input-append date form_datetime">
-												<input type="text" id="arrivetime" style="width:140px" placeholder="点击选择到达日期时间" readonly>
-												<span class="add-on" ><i class="icon-th" style="background:#8d767c"></i></span>
+												<input type="text" id="arrivetime" style="width:120px" placeholder="点击选择到达时间" readonly>
+												<span class="add-on"><i class="icon-remove"></i></span>
+												<span class="add-on" ><i class="icon-th" ></i></span>
 												</div>
 											</div>
 										</li>
@@ -271,6 +268,7 @@
 												<span class="coupon-label" style="width:280px">是否参观交流（详见会议安排）</span>
 												<input type="checkbox" name="checkbox" id="box1" value="1" data-labelauty="上午参加">
 												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
+												<input type="checkbox" name="checkbox" id="box0" value="0" checked data-labelauty="不参加">
 												</div>
 										</li>
 	</ul>
@@ -278,15 +276,14 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >提交</button>
     </div>
-	<div class="control-group tc" id="change">
-
-    </div>
+	<div id="change"></div>
   </div>
   <div class="footer">
   <div class="gezifooter">
     <p style="color:#bbb;">Sida &copy; 版权所有 2016-</p>
   </div>
   </div>
+  
 <script type="text/javascript">
 	//checked JS特效调用
 	$(function(){
@@ -310,6 +307,7 @@
 	$('#change2').click(function(){
 			document.getElementById("box1").disabled=false;
 			document.getElementById("box2").disabled=false;
+			document.getElementById("box0").disabled=false;
 			document.getElementById("company").disabled=false;
 			document.getElementById("username").disabled=false;
 			document.getElementById("school").disabled=false;
@@ -344,12 +342,16 @@
 	//bootstrap datetimepicker js特效
 	     $(".form_datetime").datetimepicker({
         format: "yyyy-mm-dd hh:ii",
-        autoclose: true,
-        todayBtn: true,
-        startDate: "2016-9-14 10:00",
-        minuteStep: 10,
-		opens:'right',
+		language:'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
     });
 </script>
+
 </body>
 </html>
