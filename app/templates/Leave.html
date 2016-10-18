@@ -102,7 +102,6 @@
 										document.getElementById('leave').disabled=true;
 										document.getElementById('ordernum2').disabled=true;
 										document.getElementById('leavetime').disabled=true;
-										document.getElementById('cli').onclick=null;
 									}
 								});
 								});
@@ -111,7 +110,7 @@
 								$.ajax({
 									url:'/leave_get',
 									data:{
-										username:$('#username').val(),
+										num2:2,
 									},
 									dataType:'JSON',
 									type:'get',
@@ -134,6 +133,11 @@
 											$("#items").append(item);
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
+											document.getElementById('username').disabled=true;
+											document.getElementById('school').disabled=true;
+											document.getElementById('leave').disabled=true;
+											document.getElementById('ordernum2').disabled=true;
+											document.getElementById('leavetime').disabled=true;
 										}
 									}
 								});
