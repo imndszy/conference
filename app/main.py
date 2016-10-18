@@ -8,7 +8,7 @@ import hashlib
 from flask import Flask, request, make_response, render_template, session, jsonify
 
 from app.config import TOKEN
-from app.handler import handle_arrive_post,handle_arrive_get
+from app.handler import handle_arrive_post,handle_arrive_post_2,handle_arrive_get
 from app.db import create_engine
 from app.config import DB_HOSTNAME,DB_PORT,DB_NAME,DB_USERNAME,DB_PASSWORD
 
@@ -98,7 +98,7 @@ def leave_post():
         session['ordernum2'] = da.get('ordernum2').encode('utf8')
         session['finished2'] = 'finished'
         session.permanent = True
-        handle_arrive_post(school=session['school'], username=session['username'],
+        handle_arrive_post_2(school=session['school'], username=session['username'],
                                  leave=int(session['leave']), leavetime=session['leavetime'],
                                  ordernum2=session['ordernum2'])
         return jsonify(result='ok')
