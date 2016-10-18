@@ -14,7 +14,7 @@ from app.config import DB_HOSTNAME,DB_PORT,DB_NAME,DB_USERNAME,DB_PASSWORD
 
 app = Flask(__name__)
 app.debug = True
-app.config['SECRET_KEY'] = 'asdasdasdadadada'
+app.config['SECRET_KEY'] = 'xxxxxxxxxxxxxxxxxxx'
 
 
 create_engine(DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOSTNAME, DB_PORT, charset='utf8')
@@ -60,7 +60,7 @@ def arrive_post():
         session['finished1'] = 'finished'
         session.permanent = True
 
-        print handle_arrive_post(school=session['school'],company=session['company'],
+        handle_arrive_post(school=session['school'],company=session['company'],
                     username=session['username'],work=session['work'],
                     tel=session['tel'],arrive=session['arrive'],
                     arrivetime=session['arrive_time'],ordernum1=session['order_num1'],
@@ -84,7 +84,7 @@ def arrive_get():
                        visit=int(session['visit']),
                        ordernum1=session['order_num1'],
                        arrive=int(session['arrive']))
-    return 'a'
+    return 'ok'
 
 
 @app.route('/leave_post')
@@ -98,7 +98,7 @@ def leave_post():
         session['ordernum2'] = da.get('ordernum2').encode('utf8')
         session['finished2'] = 'finished'
         session.permanent = True
-        print handle_arrive_post(school=session['school'], username=session['username'],
+        handle_arrive_post(school=session['school'], username=session['username'],
                                  leave=int(session['leave']), leavetime=session['leavetime'],
                                  ordernum2=session['ordernum2'])
         return jsonify(result='ok')
@@ -107,7 +107,14 @@ def leave_post():
 
 @app.route('/leave_get')
 def leave_get():
-    pass
+    if request.args.get('num2') == '2' and session.get('finished2') == 'finished':
+        return jsonify(result='ok',
+                       username=session['username'],
+                       school=session['school'],
+                       leavetime=session['leavetime'],
+                       ordernum2=session['order_num2'],
+                       leave=int(session['leave']))
+    return 'ok'
 
 
 def verification():
