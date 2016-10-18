@@ -131,6 +131,9 @@
 											var item='';
 											item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 											$("#items").append(item);
+											var	but='';
+											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>'
+											$("#change").append(but);
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
 											document.getElementById('username').disabled=true;
@@ -147,15 +150,7 @@
 </head>
 <body>
  <div class="header">
- <a href="#" class="home">
-            <span class="header-icon header-icon-home"></span>
-            <span class="header-name"></span>
-</a>
 <div class="title" id="titleString">返程信息</div>
-<a href="javascript:history.go(-1);" class="back">
-            <span class="header-icon header-icon-return"></span>
-            <span class="header-name">返回</span>
-        </a>
  </div>
 	
 	<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
@@ -206,8 +201,7 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
-	<div class="control-group tc">
-         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>
+	<div class="control-group tc" id="change">
     </div>
  </div>
 
