@@ -159,6 +159,9 @@
 											var item='';
 											item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 											$("#items").append(item);
+											var	but='';
+											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>'
+											$("#change").append(but);
 											document.getElementById("ordernum1").value=data.ordernum1;
 											document.getElementById("arrivetime").value=data.arrivetime;
 											if(data.visit==1){
@@ -170,17 +173,18 @@
 											if(data.visit==3){
 												document.getElementById("box1").checked=true;
 												document.getElementById("box2").checked=true;
-										document.getElementById("box1").disabled=true;
-										document.getElementById("box2").disabled=true;
-										document.getElementById("company").disabled=true;
-										document.getElementById("username").disabled=true;
-										document.getElementById("school").disabled=true;
-										document.getElementById("work").disabled=true;
-										document.getElementById("tel").disabled=true;
-										document.getElementById("arrive").disabled=true;
-										document.getElementById("ordernum1").disabled=true;
-										document.getElementById("arrivetime").disabled=true;
-												}
+										
+											}
+											document.getElementById("box1").disabled=true;
+											document.getElementById("box2").disabled=true;
+											document.getElementById("company").disabled=true;
+											document.getElementById("username").disabled=true;
+											document.getElementById("school").disabled=true;
+											document.getElementById("work").disabled=true;
+											document.getElementById("tel").disabled=true;
+											document.getElementById("arrive").disabled=true;
+											document.getElementById("ordernum1").disabled=true;
+											document.getElementById("arrivetime").disabled=true;
 											}
 									}
 								});
@@ -190,15 +194,7 @@
 </head>
 <body>
  <div class="header">
- <a href="#" class="home">
-            <span class="header-icon header-icon-home"></span>
-            <span class="header-name"></span>
-</a>
 <div class="title" id="titleString">赴会信息</div>
-<a href="javascript:history.go(-1);" class="back">
-            <span class="header-icon header-icon-return"></span>
-            <span class="header-name">返回</span>
-        </a>
  </div>
 	<script type="text/javascript" src="../static/js/jquery-labelauty.js"></script>
 	<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
@@ -283,8 +279,8 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >立即提交</button>
     </div>
-	<div class="control-group tc">
-         <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >立即修改</button>
+	<div class="control-group tc" id="change">
+
     </div>
   </div>
   <div class="footer">
