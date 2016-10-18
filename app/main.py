@@ -87,7 +87,7 @@ def arrive_get():
     return 'ok'
 
 
-@app.route('/leave_post')
+@app.route('/leave_post',methods=['POST'])
 def leave_post():
     if session.get('left') == 'left':
         da = request.values
@@ -112,7 +112,7 @@ def leave_get():
                        username=session['username'],
                        school=session['school'],
                        leavetime=session['leavetime'],
-                       ordernum2=session['order_num2'],
+                       ordernum2=session['ordernum2'],
                        leave=int(session['leave']))
     return 'ok'
 
