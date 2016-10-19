@@ -150,7 +150,7 @@
 											$("#items").append(item);
 											$("#change").empty();
 											var	but='';
-											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >修改</button></div>'
+											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" >修改</button>'
 											$("#change").append(but);
 											document.getElementById("ordernum1").value=data.ordernum1;
 											document.getElementById("arrivetime").value=data.arrivetime;
@@ -276,7 +276,7 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >提交</button>
     </div>
-	<div id="change"></div>
+	<div class="control-group tc" id="change"></div>
   </div>
   <div class="footer">
   <div class="gezifooter">
@@ -304,7 +304,7 @@
 										
 	});*/
 	//解锁文本框 可编辑
-	$('#change2').click(function(){
+	$('#change').click(function(){
 			document.getElementById("box1").disabled=false;
 			document.getElementById("box2").disabled=false;
 			document.getElementById("box0").disabled=false;
