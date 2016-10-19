@@ -91,7 +91,7 @@
 										school:$('#school').val(),
 										leave:$('#leave').val(),
 										ordernum2:$('#ordernum2').val(),
-										leavetime:$('#leavetime').val(),
+										leavetime:$('#leavetime').val()
 									},
 									dataType:'JSON',
 									type:'post',
@@ -128,7 +128,7 @@
 											$("#items").append(item);
 											$("#change").empty();
 											var	but='';
-											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >修改</button></div>'
+											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" >修改</button>'
 											$("#change").append(but);
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
@@ -198,7 +198,7 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >提交</button>
     </div>
-	<div id="change">
+	<div class="control-group tc" id="change">
     </div>
  </div>
 
@@ -210,7 +210,7 @@
   </div>
 <script type="text/javascript">
 	//解锁文本框 可编辑
-	$('#change2').click(function(){
+	$('#change').click(function(){
 			document.getElementById('username').disabled=false;
 			document.getElementById('school').disabled=false;
 			document.getElementById('leave').disabled=false;
