@@ -93,8 +93,6 @@
 									type:'post',
 									success:function(){
 											alert("提交成功");
-											document.getElementById("ordernum2").value=data.ordernum2;
-											document.getElementById("leavetime").value=data.leavetime;
 											document.getElementById('username').disabled=true;
 											document.getElementById('school').disabled=true;
 											document.getElementById('leave').disabled=true;
@@ -129,7 +127,6 @@
 											var item='';
 											item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
 											$("#items").append(item);
-			
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
 											document.getElementById('username').disabled=true;
