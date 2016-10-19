@@ -27,7 +27,6 @@
 									display: none;
 									padding: 5px 5px 25px 5px;
 								}
-
 								.filter {
 									padding: 10px;
 								
@@ -40,7 +39,6 @@
 									font-size: 0;
 									line-height: 0;
 								}
-
 								a.datebox {
 									border: 1px solid #e1e1e1;
 									text-decoration: none;
@@ -51,7 +49,6 @@
 									background: #fff;
 									top: 5px;
 								}
-
 							   .ui-icon-down {
 									position: absolute;
 									top: 50%;
@@ -70,7 +67,6 @@
 								.filter a.ui-state-active .ui-icon-down, .filter a.ui-state-hover .ui-icon-down {
 									background-position: 	-180px 50%;
 								}
-
 								.filter a.search {
 									float: right;
 									padding: 5px;
@@ -150,7 +146,7 @@
 											$("#items").append(item);
 											$("#change").empty();
 											var	but='';
-											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" >修改</button></div>'
+											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="change2" >修改</button></div>'
 											$("#change").append(but);
 											document.getElementById("ordernum1").value=data.ordernum1;
 											document.getElementById("arrivetime").value=data.arrivetime;
@@ -276,8 +272,7 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >提交</button>
     </div>
-	<div id="change">
-	</div>
+	<div id="change"></div>
   </div>
   <div class="footer">
   <div class="gezifooter">
