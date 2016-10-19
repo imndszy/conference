@@ -128,7 +128,7 @@
 											$("#items").append(item);
 											$("#change").empty();
 											var	but='';
-											but += '<button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" >修改</button>'
+											but += '<div class="control-group tc" ><button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" >修改</button></div>'
 											$("#change").append(but);
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
@@ -198,7 +198,7 @@
     <div class="control-group tc">
          <button class="btn-large green button width100" style="padding-left:0px;padding-right: 0px;" id="pull" >提交</button>
     </div>
-	<div class="control-group tc" id="change">
+	<div id="change">
     </div>
  </div>
 
