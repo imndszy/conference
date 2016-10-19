@@ -106,7 +106,7 @@
 								$.ajax({
 									url:'/leave_get',
 									data:{
-										num2:2,
+										num2:2
 									},
 									dataType:'JSON',
 									type:'get',
@@ -114,13 +114,13 @@
 										if(data.result=="ok"){
 											document.getElementById("username").value=data.username;
 											document.getElementById("school").value=data.school;
-											if(data.leave=1){
+											if(data.leave==1){
 												document.getElementById("leave").value=1;
 												}
-											if(data.leave=2){
+											if(data.leave==2){
 												document.getElementById("leave").value=2;
 												}
-											if(data.leave=3){
+											if(data.leave==3){
 												document.getElementById("leave").value=3;
 												}
 											$("#items").empty();
