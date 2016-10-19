@@ -48,6 +48,7 @@ def leave():
 def arrive_post():
     if session.get('arrived','') == 'arrived':
         da = request.values
+        # session.clear()
         session['school'] = da.get('school').encode('utf8')
         session['company'] = da.get('company').encode('utf8')
         session['username'] = da.get('username').encode('utf8')

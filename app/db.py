@@ -252,6 +252,7 @@ def update(sql, *args):
 
 
 def insert(table, **kw):
+    # type: (object, object) -> object
     """
     执行insert语句
     """
