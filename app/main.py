@@ -4,7 +4,9 @@
 import os
 import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+import time
 import hashlib
+import xml.etree.ElementTree as ET
 from flask import Flask, request, make_response, render_template, session, jsonify
 
 from app.config import TOKEN
@@ -30,6 +32,16 @@ def wechat_auth():
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+
+@app.route('/', methods=['POST'])
+def wechat_msg():
+    rec = request.data
+    msg = parse(rec)
+    if msg['MsgType'] == 'event' and msg.get('Event') == 'subscribe':
+        return res_text_msg(msg,'感谢关注会议助手！您可以通过下方菜单栏中的“会务信息”以及“其他信息”来了解本次会议，同时您也可以通过点击'
+                                '“您的行程”向会务组登记您的相关信息！')
+
 
 
 @app.route('/introduce')
@@ -130,6 +142,17 @@ def arrive_get():
 #     return 'ok'
 
 
+def parse(rec):
+    """
+    :param rec: rec is a xml file
+    :return: return a dictionary
+    """
+    root = ET.fromstring(rec)
+    msg = {}
+    for child in root:
+        msg[child.tag] = child.text
+    return msg
+
 def verification():
     """
     verify the weixin token
@@ -145,6 +168,31 @@ def verification():
     if hashlib.sha1(s).hexdigest() == signature:
         return 1
     return 0
+
+
+text_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
+
+news_rep_front = "<xml>\
+                <ToUserName><![CDATA[%s]]></ToUserName>\
+                <FromUserName><![CDATA[%s]]></FromUserName>\
+                <CreateTime>%s</CreateTime>\
+                <MsgType><![CDATA[news]]></MsgType>\
+                <ArticleCount>%d</ArticleCount>\
+                <Articles>"
+
+news_rep_middle = "<item>\
+                <Title><![CDATA[%s]]></Title>\
+                <Description><![CDATA[%s]]></Description>\
+                <PicUrl><![CDATA[%s]]></PicUrl>\
+                <Url><![CDATA[%s]]></Url>\
+                </item>"
+
+news_rep_back = "</xml>"
+
+def res_text_msg(msg, content):
+    response = make_response(text_rep % (msg['FromUserName'], msg['ToUserName'], str(int(time.time())), content))
+    response.content_type = 'application/xml'
+    return response
 
 
 if __name__ == "__main__":
