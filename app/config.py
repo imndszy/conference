@@ -17,20 +17,20 @@ MENU = {
     "button": [
         {
             "type": "view",
-            "name": "会议相关",
-            "url": "http://121.42.216.141"
+            "name": "会务信息",
+            "url": "http://www.njuszy.cn"
 
         },
         {
             "type": "view",
-            "name": "赴会方式登记",
-            "url": "http://121.42.216.141"
+            "name": "您的行程",
+            "url": "http://www.njuszy.cn/arrive"
 
         },
         {
             "type": "view",
-            "name": "返程方式登记",
-            "url": "http://121.42.216.141"
+            "name": "其他信息",
+            "url": "http://www.njuszy.cn/introduce"
         }
 
     ]
