@@ -41,6 +41,7 @@ def wechat_msg():
     if msg['MsgType'] == 'event' and msg.get('Event') == 'subscribe':
         return res_text_msg(msg,'感谢关注会议助手！您可以通过下方菜单栏中的“会务信息”以及“其他信息”来了解本次会议，同时您也可以通过点击'
                                 '“您的行程”向会务组登记您的相关信息！')
+    return ''
 
 
 
