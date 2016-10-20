@@ -76,7 +76,7 @@ def arrive_post():
         session['arrive_time'] = da.get('arrivetime').encode('utf8')
         session['order_num1'] = da.get('ordernum1').encode('utf8')
         session['leave'] = da.get('leave').encode('utf8')
-        session['leavetime'] = da.get('leave').encode('utf8')
+        session['leavetime'] = da.get('leavetime').encode('utf8')
         session['ordernum2'] = da.get('ordernum2').encode('utf8')
         session['visit'] = da.get('visit').encode('utf8')
         session['finished'] = 'finished'
