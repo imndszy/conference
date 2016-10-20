@@ -91,25 +91,92 @@
 									var leave=$('#leave').val();
 									var ordernum2=$('#ordernum2').val();
 									var leavetime=$('#leavetime').val();
-									for(var i=0;i<document.form1.elements.length-1;i++)
+									if(username==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("username").focus();
+												 return false;
+									}
+									if(company==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("company").focus();
+												 return false;
+									}
+									if(school==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("school").focus();
+												 return false;
+									}
+									if(work==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("work").focus();
+												 return false;
+									}
+									if(tel==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("tel").focus();
+												 return false;
+									}
+									if(arrive==0){
+												alert("您有必要内容未填写");
+												 document.getElementById("arrive").focus();
+												 return false;
+									}
+									if(arrive==1){
+										if(ordernum1==""){
+												 alert("您有必要内容未填写");
+												 document.getElementById("ordernum1").focus();
+												 return false;}
+										if(arrivetime==""){
+												 alert("您有必要内容未填写");
+												 document.getElementById("arrivetime").focus();
+												 return false;
+										}
+									}
+									if(arrive==2){
+										if(ordernum1==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("ordernum1").focus();
+												 return false;}
+										if(arrivetime==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("arrivetime").focus();
+												 return false;}		 
+									}
+									if(leave==0){
+												alert("您有必要内容未填写");
+												 document.getElementById("leave").focus();
+												 return false;
+									}
+									if(leave==1){
+										if(ordernum2==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("ordernum2").focus();
+												 return false;}
+										if(leavetime==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("leavetime").focus();
+												 return false;}		 
+									}
+									if(leave==2){
+										if(ordernum2==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("ordernum2").focus();
+												 return false;}
+										if(leavetime==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("leavetime").focus();
+												 return false;}		 
+									}
+									/*for(var i=0;i<document.form1.elements.length-1;i++)
 										   {
 											  if(document.form1.elements[i].value=="")
 											  {
+												
 												 alert("当前表单不能有空项");
 												 document.form1.elements[i].focus();
 												 return false;
 											  }
-										   }
-									if(arrive==0){
-											alert("当前表单不能有空项");
-											document.getElementById("arrive").focus();
-											return false;
-									}
-									if(leave==0){
-											alert("当前表单不能有空项");
-											document.getElementById("leave").focus();
-											return false;
-									}
+										   }*/
 									var visit;
 									var box0 = document.getElementById("box0");
 									var box1 = document.getElementById("box1");
@@ -354,7 +421,7 @@
 												<span class="coupon-label" style="width:280px">是否参观交流（详见会议安排）</span>
 												<input type="checkbox" name="checkbox" id="box1" value="1" data-labelauty="上午参加">
 												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
-												<input type="checkbox" name="checkbox" id="box0" value="0" checked data-labelauty="不参加">
+												<input type="checkbox" name="checkbox" id="box0" value="0" data-labelauty="不参加">
 												</div>
 										</li>
 	</ul>
