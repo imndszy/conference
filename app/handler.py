@@ -8,7 +8,7 @@ def handle_arrive_post(**kw):
     result = select('select * from wechat where username=? and school=?', kw['username'], kw['school'])
     if result:
         update('delete from wechat where username=? and school = ?',kw['username'], kw['school'])
-    return insert('wechat1',**kw)
+    return insert('wechat',**kw)
 
 # def handle_arrive_post_2(**kw):
 #     result = select('select * from wechat2 where username=? and school=?', kw['username'], kw['school'])
