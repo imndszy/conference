@@ -80,7 +80,37 @@
 							<script>
 							 $(document).ready(function(){
 								$('#pull').click(function(){
-									var visit = 0;
+									var username=$('#username').val();
+									var company=$('#company').val();
+									var school=$('#school').val();
+									var work=$('#work').val();
+									var tel=$('#tel').val();
+									var arrive=$('#arrive').val();
+									var ordernum1=$('#ordernum1').val();
+									var arrivetime=$('#arrivetime').val();
+									var leave=$('#leave').val();
+									var ordernum2=$('#ordernum2').val();
+									var leavetime=$('#leavetime').val();
+									for(var i=0;i<document.form1.elements.length-1;i++)
+										   {
+											  if(document.form1.elements[i].value=="")
+											  {
+												 alert("当前表单不能有空项");
+												 document.form1.elements[i].focus();
+												 return false;
+											  }
+										   }
+									if(arrive==0){
+											alert("当前表单不能有空项");
+											document.getElementById("arrive").focus();
+											return false;
+									}
+									if(leave==0){
+											alert("当前表单不能有空项");
+											document.getElementById("leave").focus();
+											return false;
+									}
+									var visit;
 									var box0 = document.getElementById("box0");
 									var box1 = document.getElementById("box1");
 									var box2 = document.getElementById("box2");
@@ -93,22 +123,27 @@
 										}
 										else{visit=1;}
 									}
-									else{visit=2;}
+									else if(box2.checked){visit=2;}
+									else{visit=4;}
+									if(visit==4){
+											alert("请选择是否参观交流");
+											return false;
+									}
 									$.ajax({
 									url:'/arrive_post',
 									data:{
 										num1:1,
-										username:$('#username').val(),
-										company:$('#company').val(),
-										school:$('#school').val(),
-										work:$('#work').val(),
-										tel:$('#tel').val(),
-										arrive:$('#arrive').val(),
-										ordernum1:$('#ordernum1').val(),
-										arrivetime:$('#arrivetime').val(),
-										leave:$('#leave').val(),
-										ordernum2:$('#ordernum2').val(),
-										leavetime:$('#leavetime').val(),
+										username:username,
+										company:company,
+										school:school,
+										work:work,
+										tel:tel,
+										arrive:arrive,
+										ordernum1:ordernum1,
+										arrivetime:arrivetime,
+										leave:leave,
+										ordernum2:ordernum2,
+										leavetime:leavetime,
 										visit:visit
 									},
 									dataType:'JSON',
@@ -231,7 +266,7 @@
 	
        <div class="container width90 pt20">
 	   
- <form class="form-horizontal">
+ <form name="form1" class="form-horizontal">
 	<div class="control-group">
 	
 		<input name="school" type="text" id="school" class="input width100 " style="background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入学校名称" />
@@ -271,7 +306,7 @@
 												<span class="coupon-label">赴会方式</span>
 												<span class="coupon-input">
 														<select style="font-size: 16px; line-height: 35px;height:36px;" id="arrive" onchange="show1(this.value)">
-														<option>全部</option> 
+														<option value="0">全部</option> 
 															  <option value="1">飞机</option> 
 															  <option value="2">火车</option> 
 															  <option value="3">其他</option> 
@@ -295,7 +330,7 @@
 												<span class="coupon-label">返程方式</span>
 												<span class="coupon-input">
 														<select style="font-size: 16px; line-height: 35px; height:36px;" id="leave" onchange="show2(this.value)">
-														<option>全部</option> 
+														<option value="0">全部</option> 
 															  <option value="1">飞机</option> 
 															  <option value="2">火车</option> 
 															  <option value="3">其他</option> 
