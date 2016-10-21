@@ -421,7 +421,7 @@
 												<span class="coupon-label" style="width:280px">是否参观交流（详见会议安排）</span>
 												<input type="checkbox" name="checkbox" id="box1" value="1" data-labelauty="上午参加">
 												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
-												<input type="checkbox" name="checkbox" id="box0" value="0" data-labelauty="不参加">
+												<input type="checkbox" name="checkbox" id="box0" value="0" checked disabled data-labelauty="不参加">
 												</div>
 										</li>
 	</ul>
@@ -462,6 +462,30 @@
 			document.getElementById('leavetime').disabled=false;
 			
 	});
+	var obox1 = document.getElementById("box1");
+	var obox2 = document.getElementById("box2");
+	obox1.onclick=function(){
+		if(this.checked){
+			document.getElementById("box0").checked=false;
+		}
+		else if(obox2.checked){
+			document.getElementById("box0").checked=false;
+		}
+		else{
+			document.getElementById("box0").checked=true;
+		}
+	}
+	obox2.onclick=function(){
+		if(this.checked){
+			document.getElementById("box0").checked=false;
+		}
+		else if(obox1.checked){
+			document.getElementById("box0").checked=false;
+		}
+		else{
+			document.getElementById("box0").checked=true;
+		}
+	}
 	//选择出行方式后的信息
 	function show1(index){
 			if(index==1){
