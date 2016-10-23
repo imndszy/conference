@@ -18,19 +18,19 @@ MENU = {
         {
             "type": "view",
             "name": "会务信息",
-            "url": "http://www.njuszy.cn"
+            "url": "https://www.njuszy.cn"
 
         },
         {
             "type": "view",
             "name": "您的行程",
-            "url": "http://www.njuszy.cn/arrive"
+            "url": "https://www.njuszy.cn/arrive"
 
         },
         {
             "type": "view",
             "name": "其他信息",
-            "url": "http://www.njuszy.cn/introduce"
+            "url": "https://www.njuszy.cn/introduce"
         }
 
     ]
