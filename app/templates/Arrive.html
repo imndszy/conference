@@ -85,6 +85,7 @@
 									var school=$('#school').val();
 									var work=$('#work').val();
 									var tel=$('#tel').val();
+									var email=$('#email').val();
 									var arrive=$('#arrive').val();
 									var ordernum1=$('#ordernum1').val();
 									var arrivetime=$('#arrivetime').val();
@@ -116,6 +117,21 @@
 												 document.getElementById("tel").focus();
 												 return false;
 									}
+									if(email==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("email").focus();
+												 return false;
+									}
+									if(email != "") {
+										var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+										isok= reg.test(email );
+										if (!isok) {
+										alert("邮箱格式不正确，请重新输入！");
+										document.getElementById("emailname").focus();
+										return false;
+										}
+									};
+
 									if(arrive==0){
 												alert("您有必要内容未填写");
 												 document.getElementById("arrive").focus();
@@ -205,6 +221,7 @@
 										school:school,
 										work:work,
 										tel:tel,
+										email:email,
 										arrive:arrive,
 										ordernum1:ordernum1,
 										arrivetime:arrivetime,
@@ -219,12 +236,12 @@
 											alert("提交成功");
 											document.getElementById("box1").disabled=true;
 											document.getElementById("box2").disabled=true;
-											document.getElementById("box0").disabled=true;
 											document.getElementById("company").disabled=true;
 											document.getElementById("username").disabled=true;
 											document.getElementById("school").disabled=true;
 											document.getElementById("work").disabled=true;
 											document.getElementById("tel").disabled=true;
+											document.getElementById("email").disabled=true;
 											document.getElementById("arrive").disabled=true;
 											document.getElementById("ordernum1").disabled=true;
 											document.getElementById("arrivetime").disabled=true;
@@ -250,6 +267,7 @@
 											document.getElementById("school").value=data.school;
 											document.getElementById("work").value=data.work;
 											document.getElementById("tel").value=data.tel;
+											document.getElementById("email").value=data.email;
 											if(data.arrive==1){
 												document.getElementById("arrive").value=1;
 												}
@@ -283,12 +301,12 @@
 											}
 											document.getElementById("box1").disabled=true;
 											document.getElementById("box2").disabled=true;
-											document.getElementById("box0").disabled=true;
 											document.getElementById("company").disabled=true;
 											document.getElementById("username").disabled=true;
 											document.getElementById("school").disabled=true;
 											document.getElementById("work").disabled=true;
 											document.getElementById("tel").disabled=true;
+											document.getElementById("email").disabled=true;
 											document.getElementById("arrive").disabled=true;
 											document.getElementById("ordernum1").disabled=true;
 											document.getElementById("arrivetime").disabled=true;
@@ -363,6 +381,13 @@
 												<span class="coupon-label">联系方式</span>
 												<span class="coupon-input">
 														<input name="tel" type="text" id="tel" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的联系方式" />
+												</span>
+											</div>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon coupon-icon1"></span>
+												<span class="coupon-label">电子邮箱</span>
+												<span class="coupon-input">
+														<input name="email" type="text" id="email" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的电子邮箱" />
 												</span>
 											</div>
 										   
@@ -448,12 +473,12 @@
 	$('#change2').click(function(){
 			document.getElementById("box1").disabled=false;
 			document.getElementById("box2").disabled=false;
-			document.getElementById("box0").disabled=false;
 			document.getElementById("company").disabled=false;
 			document.getElementById("username").disabled=false;
 			document.getElementById("school").disabled=false;
 			document.getElementById("work").disabled=false;
 			document.getElementById("tel").disabled=false;
+			document.getElementById("email").disabled=false;
 			document.getElementById("arrive").disabled=false;
 			document.getElementById("ordernum1").disabled=false;
 			document.getElementById("arrivetime").disabled=false;

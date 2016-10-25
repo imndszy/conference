@@ -256,10 +256,12 @@ margin-top: 10px;display: inline-block;max-width: 260px;
 .search-group .coupon-icon1 {
     background: url("../images/coupon_icon1.png") no-repeat scroll 0 0 transparent;
     background-size: contain;
+	margin-top:6px;
 }
 .search-group .coupon-icon2 {
     background: url("../images/coupon_icon2.png") no-repeat scroll 0 0 transparent;
     background-size: contain;
+	margin-top:5px;
 }
 .search-group .coupon-icon3 {
     background: url("../images/coupon_icon3.png") no-repeat scroll 0 0 transparent;
