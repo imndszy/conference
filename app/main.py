@@ -72,6 +72,7 @@ def arrive_post():
         session['username'] = da.get('username').encode('utf8')
         session['work'] = da.get('work').encode('utf8')
         session['tel'] = da.get('tel').encode('utf8')
+        session['email'] = da.get('email').encode('utf8')
         session['arrive'] = da.get('arrive').encode('utf8')
         session['arrive_time'] = da.get('arrivetime').encode('utf8')
         session['order_num1'] = da.get('ordernum1').encode('utf8')
@@ -84,7 +85,7 @@ def arrive_post():
 
         handle_arrive_post(school=session['school'],company=session['company'],
                     username=session['username'],work=session['work'],
-                    tel=session['tel'],arrive=session['arrive'],
+                    tel=session['tel'],email=session['email'],arrive=session['arrive'],
                     arrivetime=session['arrive_time'],ordernum1=session['order_num1'],
                     visit=session['visit'],leave=session['leave'],
                            leavetime=session['leavetime'],ordernum2=session['ordernum2'])
@@ -103,6 +104,7 @@ def arrive_get():
                        company=session['company'],
                        work=session['work'],
                        tel=session['tel'],
+                       email=session['email'],
                        arrivetime=session['arrive_time'],
                        visit=int(session['visit']),
                        ordernum1=session['order_num1'],
