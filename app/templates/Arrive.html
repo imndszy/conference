@@ -92,9 +92,9 @@
 									var leave=$('#leave').val();
 									var ordernum2=$('#ordernum2').val();
 									var leavetime=$('#leavetime').val();
-									if(username==""){
+									if(school==""){
 												alert("您有必要内容未填写");
-												 document.getElementById("username").focus();
+												 document.getElementById("school").focus();
 												 return false;
 									}
 									if(company==""){
@@ -102,9 +102,9 @@
 												 document.getElementById("company").focus();
 												 return false;
 									}
-									if(school==""){
+									if(username==""){
 												alert("您有必要内容未填写");
-												 document.getElementById("school").focus();
+												 document.getElementById("username").focus();
 												 return false;
 									}
 									if(work==""){
@@ -127,7 +127,7 @@
 										isok= reg.test(email );
 										if (!isok) {
 										alert("邮箱格式不正确，请重新输入！");
-										document.getElementById("emailname").focus();
+										document.getElementById("email").focus();
 										return false;
 										}
 									};
@@ -137,7 +137,7 @@
 												 document.getElementById("arrive").focus();
 												 return false;
 									}
-									if(arrive==1){
+									/*if(arrive==1){
 										if(ordernum1==""){
 												 alert("您有必要内容未填写");
 												 document.getElementById("ordernum1").focus();
@@ -157,13 +157,13 @@
 												alert("您有必要内容未填写");
 												 document.getElementById("arrivetime").focus();
 												 return false;}		 
-									}
+									}*/
 									if(leave==0){
 												alert("您有必要内容未填写");
 												 document.getElementById("leave").focus();
 												 return false;
 									}
-									if(leave==1){
+									/*if(leave==1){
 										if(ordernum2==""){
 												alert("您有必要内容未填写");
 												 document.getElementById("ordernum2").focus();
@@ -182,7 +182,7 @@
 												alert("您有必要内容未填写");
 												 document.getElementById("leavetime").focus();
 												 return false;}		 
-									}
+									}*/
 									/*for(var i=0;i<document.form1.elements.length-1;i++)
 										   {
 											  if(document.form1.elements[i].value=="")
@@ -209,8 +209,7 @@
 									else if(box2.checked){visit=2;}
 									else{visit=4;}
 									if(visit==4){
-											alert("请选择是否参观交流");
-											return false;
+										alert("请选择是否参观交流（如果不确定，请您确定后及时补充）");
 									}
 									$.ajax({
 									url:'/arrive_post',
@@ -234,6 +233,7 @@
 									type:'post',
 									success:function(){
 											alert("提交成功");
+											document.getElementById("box0").disabled=true;
 											document.getElementById("box1").disabled=true;
 											document.getElementById("box2").disabled=true;
 											document.getElementById("company").disabled=true;
@@ -279,7 +279,7 @@
 												}
 											$("#items").empty();
 											var item='';
-											item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的信息（可不填）" /></div>'
+											item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的出行方式（可不填）" /></div>'
 											$("#items").append(item);
 											document.getElementById("ordernum1").value=data.ordernum1;
 											document.getElementById("arrivetime").value=data.arrivetime;
@@ -301,6 +301,7 @@
 											}
 											document.getElementById("box1").disabled=true;
 											document.getElementById("box2").disabled=true;
+											document.getElementById("box0").disabled=true;
 											document.getElementById("company").disabled=true;
 											document.getElementById("username").disabled=true;
 											document.getElementById("school").disabled=true;
@@ -321,7 +322,7 @@
 												}
 											$("#items2").empty();
 											var item2='';
-											item2 += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的信息（可不填）" /></div>'
+											item2 += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的出行方式（可不填）" /></div>'
 											$("#items2").append(item2);
 											document.getElementById("ordernum2").value=data.ordernum2;
 											document.getElementById("leavetime").value=data.leavetime;
@@ -408,7 +409,7 @@
 											<div id="items"></div>
 											<div class="coupon-nav coupon-nav-style">
 												<span class="search-icon coupon-icon2"></span>
-												<span class="coupon-label">到达日期时间</span>
+												<span class="coupon-label">预计到达时间</span>
 												<div class="input-append date form_datetime">
 												<input type="text" id="arrivetime" style="width:120px" placeholder="点击选择到达时间" readonly>
 												<span class="add-on"><i class="icon-remove"></i></span>
@@ -432,7 +433,7 @@
 											<div id="items2"></div>
 											<div class="coupon-nav coupon-nav-style">
 												<span class="search-icon coupon-icon6"></span>
-												<span class="coupon-label">返程日期时间</span>
+												<span class="coupon-label">预计返程时间</span>
 												<div class="input-append date form_datetime">
 												<input type="text" id="leavetime" style="width:120px"placeholder="点击选择返程时间" readonly>
 												<span class="add-on"><i class="icon-remove"></i></span>
@@ -446,7 +447,7 @@
 												<span class="coupon-label" style="width:280px">是否参观交流（详见会议安排）</span>
 												<input type="checkbox" name="checkbox" id="box1" value="1" data-labelauty="上午参加">
 												<input type="checkbox" name="checkbox" id="box2" value="2" data-labelauty="下午参加">
-												<input type="checkbox" name="checkbox" id="box0" value="0" checked disabled data-labelauty="不参加">
+												<input type="checkbox" name="checkbox" id="box0" value="0" checked data-labelauty="不参加">
 												</div>
 										</li>
 	</ul>
@@ -473,6 +474,7 @@
 	$('#change2').click(function(){
 			document.getElementById("box1").disabled=false;
 			document.getElementById("box2").disabled=false;
+			document.getElementById("box0").disabled=false;
 			document.getElementById("company").disabled=false;
 			document.getElementById("username").disabled=false;
 			document.getElementById("school").disabled=false;
@@ -489,6 +491,7 @@
 	});
 	var obox1 = document.getElementById("box1");
 	var obox2 = document.getElementById("box2");
+	var obox0 = document.getElementById("box0");
 	obox1.onclick=function(){
 		if(this.checked){
 			document.getElementById("box0").checked=false;
@@ -511,18 +514,24 @@
 			document.getElementById("box0").checked=true;
 		}
 	}
+	obox0.onclick=function(){
+		if(this.checked){
+			document.getElementById("box1").checked=false;
+			document.getElementById("box2").checked=false;
+		}
+	}
 	//选择出行方式后的信息
 	function show1(index){
 			if(index==1){
 				$("#items").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班（可不填）" /></div>'
 				$("#items").append(item);
 			}
 			if(index==2){
 				$("#items").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的列车次" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum1" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的列车次（可不填）" /></div>'
 				$("#items").append(item);
 			}
 			if(index==3){
@@ -536,13 +545,13 @@
 			if(index==1){
 				$("#items2").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的航班（可不填）" /></div>'
 				$("#items2").append(item);
 			}
 			if(index==2){
 				$("#items2").empty();
 				var item='';
-				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的列车次" /></div>'
+				item += '<div class="control-group"><input name="trip" type="text" id="ordernum2" style="width:318px;background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px;float:right" placeholder="请输入您的列车次（可不填）" /></div>'
 				$("#items2").append(item);
 			}
 			if(index==3){
