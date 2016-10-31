@@ -7,7 +7,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import time
 import hashlib
 import xml.etree.ElementTree as ET
-from flask import Flask, request, make_response, render_template, session, jsonify
+from flask import Flask, request, make_response, render_template, session, jsonify,\
+                  send_file
 
 from app.config import TOKEN
 from app.handler import handle_arrive_post
@@ -44,6 +45,20 @@ def wechat_msg():
     return ''
 
 
+@app.route('/download')
+def download():
+    da = request.args
+    if da.get('a')=="meeting" and da.get('b')=="":
+        response = make_response(send_file("/home/szy/conference.xlsx"))
+        response.headers["Content-Disposition"] = "attachment; filename=conference.xlsx"
+        return response
+    return 'ID或密码不对'
+
+
+@app.route('/admin')
+def hello_world():
+    return render_template('a.html')
+
 
 @app.route('/introduce')
 def introduce():
@@ -54,12 +69,6 @@ def introduce():
 def arrive():
     session['arrived'] = 'arrived'
     return render_template('Arrive.html')
-#
-#
-# @app.route('/leave')
-# def leave():
-#     session['left'] = 'left'
-#     return render_template('Leave.html')
 
 
 @app.route('/arrive_post',methods=['POST'])
@@ -80,6 +89,7 @@ def arrive_post():
         session['leavetime'] = da.get('leavetime').encode('utf8')
         session['ordernum2'] = da.get('ordernum2').encode('utf8')
         session['visit'] = da.get('visit').encode('utf8')
+        session['address'] = da.get('address').encode('utf8')
         session['finished'] = 'finished'
         session.permanent = True
 
@@ -87,7 +97,7 @@ def arrive_post():
                     username=session['username'],work=session['work'],
                     tel=session['tel'],email=session['email'],arrive=session['arrive'],
                     arrivetime=session['arrive_time'],ordernum1=session['order_num1'],
-                    visit=session['visit'],leave=session['leave'],
+                    visit=session['visit'],leave=session['leave'],address=session['address'],
                            leavetime=session['leavetime'],ordernum2=session['ordernum2'])
         return jsonify(result='ok')
     return 'ok'
@@ -109,40 +119,11 @@ def arrive_get():
                        visit=int(session['visit']),
                        ordernum1=session['order_num1'],
                        arrive=int(session['arrive']),
+                       address=session['address'],
                        leavetime = session['leavetime'],
                        ordernum2 = session['ordernum2'],
                        leave = int(session['leave']))
     return 'ok'
-
-#
-# @app.route('/leave_post',methods=['POST'])
-# def leave_post():
-#     if session.get('left') == 'left':
-#         da = request.values
-#         session['school'] = da.get('school').encode('utf8')
-#         session['username'] = da.get('username').encode('utf8')
-#         session['leave'] = da.get('leave').encode('utf8')
-#         session['leavetime'] = da.get('leave').encode('utf8')
-#         session['ordernum2'] = da.get('ordernum2').encode('utf8')
-#         session['finished2'] = 'finished'
-#         session.permanent = True
-#         handle_arrive_post_2(school=session['school'], username=session['username'],
-#                                  leave=int(session['leave']), leavetime=session['leavetime'],
-#                                  ordernum2=session['ordernum2'])
-#         return jsonify(result='ok')
-#     return 'ok'
-#
-#
-# @app.route('/leave_get')
-# def leave_get():
-#     if request.args.get('num2') == '2' and session.get('finished2') == 'finished':
-#         return jsonify(result='ok',
-#                        username=session['username'],
-#                        school=session['school'],
-#                        leavetime=session['leavetime'],
-#                        ordernum2=session['ordernum2'],
-#                        leave=int(session['leave']))
-#     return 'ok'
 
 
 def parse(rec):
@@ -175,22 +156,6 @@ def verification():
 
 text_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
 
-news_rep_front = "<xml>\
-                <ToUserName><![CDATA[%s]]></ToUserName>\
-                <FromUserName><![CDATA[%s]]></FromUserName>\
-                <CreateTime>%s</CreateTime>\
-                <MsgType><![CDATA[news]]></MsgType>\
-                <ArticleCount>%d</ArticleCount>\
-                <Articles>"
-
-news_rep_middle = "<item>\
-                <Title><![CDATA[%s]]></Title>\
-                <Description><![CDATA[%s]]></Description>\
-                <PicUrl><![CDATA[%s]]></PicUrl>\
-                <Url><![CDATA[%s]]></Url>\
-                </item>"
-
-news_rep_back = "</xml>"
 
 def res_text_msg(msg, content):
     response = make_response(text_rep % (msg['FromUserName'], msg['ToUserName'], str(int(time.time())), content))
