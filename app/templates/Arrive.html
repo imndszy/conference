@@ -86,6 +86,7 @@
 									var work=$('#work').val();
 									var tel=$('#tel').val();
 									var email=$('#email').val();
+									var address=$('#address').val();
 									var arrive=$('#arrive').val();
 									var ordernum1=$('#ordernum1').val();
 									var arrivetime=$('#arrivetime').val();
@@ -120,6 +121,11 @@
 									if(email==""){
 												alert("您有必要内容未填写");
 												 document.getElementById("email").focus();
+												 return false;
+									}
+									if(address==""){
+												alert("您有必要内容未填写");
+												 document.getElementById("address").focus();
 												 return false;
 									}
 									if(email != "") {
@@ -221,6 +227,7 @@
 										work:work,
 										tel:tel,
 										email:email,
+										address:address,
 										arrive:arrive,
 										ordernum1:ordernum1,
 										arrivetime:arrivetime,
@@ -242,6 +249,7 @@
 											document.getElementById("work").disabled=true;
 											document.getElementById("tel").disabled=true;
 											document.getElementById("email").disabled=true;
+											document.getElementById("address").disabled=true;
 											document.getElementById("arrive").disabled=true;
 											document.getElementById("ordernum1").disabled=true;
 											document.getElementById("arrivetime").disabled=true;
@@ -268,6 +276,7 @@
 											document.getElementById("work").value=data.work;
 											document.getElementById("tel").value=data.tel;
 											document.getElementById("email").value=data.email;
+											document.getElementById("address").value=data.address;
 											if(data.arrive==1){
 												document.getElementById("arrive").value=1;
 												}
@@ -396,6 +405,13 @@
 														<input name="email" type="text" id="email" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入您的电子邮箱" />
 												</span>
 											</div>
+											<div class="coupon-nav coupon-nav-style">
+												<span class="search-icon time-icon"></span>
+												<span class="coupon-label">发票邮寄地址</span>
+												<span class="coupon-input">
+														<input name="address" type="text" id="address" class="input width100 " style="height:20px; background: none repeat scroll 0 0 #F9F9F9;padding: 8px 0px 8px 4px" placeholder="请输入会务发票邮寄地址" />
+												</span>
+											</div>
 										   
 										</li>
 									    <li>
@@ -486,6 +502,7 @@
 			document.getElementById("work").disabled=false;
 			document.getElementById("tel").disabled=false;
 			document.getElementById("email").disabled=false;
+			document.getElementById("address").disabled=false;
 			document.getElementById("arrive").disabled=false;
 			document.getElementById("ordernum1").disabled=false;
 			document.getElementById("arrivetime").disabled=false;
